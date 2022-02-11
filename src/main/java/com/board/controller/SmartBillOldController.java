@@ -33,10 +33,10 @@ public class SmartBillOldController {
 	@Inject
 	SmartbillOldService service;
 
-	@RequestMapping(value = "/smartbillOld", method = RequestMethod.GET)
+	@RequestMapping(value = "/smartbillOldArissue", method = RequestMethod.GET)
 	public String viewsSmartbillOld(Locale locale) {
 
-		return "/smartbillOld/smartbillOld";
+		return "/smartbillOld/smartbillOldArissue";
 
 	}
 
@@ -44,8 +44,8 @@ public class SmartBillOldController {
 	 * 구연동 전자(세금)계산서 발행
 	 */
 	
-	@RequestMapping(value = "/smartbillOldAction", method = RequestMethod.POST)
-	public String smartbillOldAction(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
+	@RequestMapping(value = "/smartbillOldArissuePost", method = RequestMethod.POST)
+	public String smartbillOldPost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
 
 		BufferedReader in = null;
 		HttpSession session = request.getSession();

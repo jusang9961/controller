@@ -54,7 +54,7 @@
 								발행<span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a href="/smartbillOld/smartbillOld">정매출 발행</a></li>
+								<li><a href="/smartbillOld/smartbillOldArissue">정매출 발행</a></li>
 								<li><a href="/BBS/jsp/smartbillOld/smartbillOldReceive.jsp">역매입 요청</a></li>
 								<li><a href="/BBS/jsp/smartbillOld/smartbillOldDTT.jsp">정매출 거래명세서</a></li>
 							</ul></li>
