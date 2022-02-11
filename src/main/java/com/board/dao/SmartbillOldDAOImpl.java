@@ -44,4 +44,14 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 
 	}
 	
+	/*
+	 * 정매출(거래명세서 포함) 발행
+	 */
+	@Override
+	public void arissueDtt(SmartbillOldVO smartbillOldvo) throws Exception {
+
+		sql_old.insert(namespace + ".arissueDtt", smartbillOldvo);
+
+	}
+	
 }
