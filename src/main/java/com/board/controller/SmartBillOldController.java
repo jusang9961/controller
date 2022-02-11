@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +38,16 @@ public class SmartBillOldController {
 	public String viewsSmartbillOld(Locale locale) {
 
 		return "/smartbillOld/smartbillOldArissue";
-
+	
 	}
+
+	@RequestMapping(value = "/smartbillOldReceive", method = RequestMethod.GET)
+	public String smartbillOldReceive(Locale locale) {
+
+		return "/smartbillOld/smartbillOldReceive";
+		
+	}
+	
 
 	/*
 	 * 구연동 전자(세금)계산서 발행
@@ -65,6 +74,7 @@ public class SmartBillOldController {
 			// 세금계산서 발행 호출
 			try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ARISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
+				
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 
 				con.setRequestMethod("GET");
@@ -90,4 +100,38 @@ public class SmartBillOldController {
 
 	}
 
+	/*
+	 * 구연동 전자(세금)계산서 역매입 요청
+	 */
+	
+	@RequestMapping(value = "/smartbillOld/smartbillOldReceivePost", method = RequestMethod.POST)
+	public String smartbillOldReceivePost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
+
+		BufferedReader in = null;
+
+		logger.info("전자세금계산서 역매입 요청 전송(RARISSUE)");
+
+			// 작성일자의 특수문자 제거
+			String wdate = smartbillOldvo.getTxtDate().replaceAll("[^0-9]", "");
+			smartbillOldvo.setTxtDate(wdate);
+
+			service.issue(smartbillOldvo);
+
+			// 역매입 요청 발행
+			try {
+				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
+				logger.info(String.for(obj));
+				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+
+				con.setRequestMethod("GET");
+		
+				in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		return "redirect:/";
+
+	}
+	
 }

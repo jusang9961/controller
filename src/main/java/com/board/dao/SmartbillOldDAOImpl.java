@@ -24,12 +24,24 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 
 	private static String namespace = "com.board.mappers.smartbillOld";
 
-
+	/*
+	 * 정매출 발행
+	 */
 	@Override
 	public void arissue(SmartbillOldVO smartbillOldvo) throws Exception {
 
 		sql_old.insert(namespace + ".arissue", smartbillOldvo);
-		
+
 	}
 
+	/*
+	 * 역매입 요청
+	 */
+	@Override
+	public void issue(SmartbillOldVO smartbillOldvo) throws Exception {
+
+		sql_old.insert(namespace + ".issue", smartbillOldvo);
+
+	}
+	
 }
