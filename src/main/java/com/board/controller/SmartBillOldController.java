@@ -120,7 +120,7 @@ public class SmartBillOldController {
 			// 역매입 요청 발행
 			try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
-				logger.info(String.for(obj));
+
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 
 				con.setRequestMethod("GET");
