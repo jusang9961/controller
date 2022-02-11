@@ -31,7 +31,8 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 	public void arissue(SmartbillOldVO smartbillOldvo) throws Exception {
 
 		sql_old.insert(namespace + ".arissue", smartbillOldvo);
-
+		sql_old.insert(namespace + ".arissueItem", smartbillOldvo);
+		sql_old.insert(namespace + ".arissueStatus", smartbillOldvo);
 	}
 
 	/*

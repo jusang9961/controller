@@ -78,6 +78,48 @@
 		#{txtBatchId}
 		)
 	</insert>
+	
+	<insert id="arissueItem" parameterType="com.board.domain.SmartbillOldVO">
+		INSERT INTO XXSB_DTI_ITEM
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_LINE_NUM,
+		SUP_AMOUNT,
+		TAX_AMOUNT,
+		ITEM_GUBUN,
+		CREATION_DATE,
+		LAST_UPDATE_DATE)
+		VALUES(
+		#{conversationId},
+		'AR',
+		'2',
+		'1',
+		#{txtSupAmount},
+		#{txtTaxAmount},
+		'DTI',
+		sysdate,
+		sysdate)
+	</insert>
+
+	<insert id="arissueStatus" parameterType="com.board.domain.SmartbillOldVO">
+		INSERT INTO XXSB_DTI_STATUS
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_STATUS,
+		CREATION_DATE,
+		LAST_UPDATE_DATE)
+		VALUES(
+		#{conversationId},
+		'AR',
+		'2',
+		'S',
+		sysdate,
+		sysdate)
+	</insert>
+
+
 
 	<insert id="issue" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_MAIN
