@@ -42,7 +42,8 @@
 		TOTAL_AMOUNT,
 		CREATION_DATE,
 		LAST_UPDATE_DATE,
-		INTERFACE_BATCH_ID)
+		INTERFACE_BATCH_ID,
+		DTT_YN)
 		VALUES(#{conversationId},
 		'AR',
 		'2',
@@ -75,8 +76,12 @@
 		#{txtTotalAmount},
 		sysdate,
 		sysdate,
-		#{txtBatchId}
-		)
+		#{txtBatchId},
+	<choose>
+		<when test="dtiGubun == 'DTT'">'Y'</when>
+		<otherwise>'N'</otherwise>
+	</choose>
+	)
 	</insert>
 	
 	<insert id="arissueItem" parameterType="com.board.domain.SmartbillOldVO">
@@ -102,6 +107,29 @@
 		sysdate)
 	</insert>
 
+	<insert id="arissueItemDTT" parameterType="com.board.domain.SmartbillOldVO">
+		INSERT INTO XXSB_DTI_ITEM
+		(CONVERSATION_ID,
+		 SUPBUY_TYPE,
+		 DIRECTION,
+		 DTI_LINE_NUM,
+		 SUP_AMOUNT,
+		 TAX_AMOUNT,
+		 ITEM_GUBUN,
+		 CREATION_DATE,
+		 LAST_UPDATE_DATE)
+		VALUES(
+				  #{conversationId},
+				  'AR',
+				  '2',
+				  '2',
+				  #{txtSupAmount},
+				  #{txtTaxAmount},
+				  'DTT',
+				  sysdate,
+				  sysdate)
+	</insert>
+
 	<insert id="arissueStatus" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_STATUS
 		(CONVERSATION_ID,
@@ -118,8 +146,6 @@
 		sysdate,
 		sysdate)
 	</insert>
-
-
 
 	<insert id="issue" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_MAIN
@@ -189,79 +215,6 @@
 		sysdate,
 		sysdate,
 		#{txtBatchId}
-		)
-	</insert>
-
-	<insert id="arissueDtt" parameterType="com.board.domain.SmartbillOldVO">
-		INSERT INTO XXSB_DTI_MAIN
-		(CONVERSATION_ID,
-		SUPBUY_TYPE,
-		DIRECTION,
-		DTI_WDATE,
-		DTI_TYPE,
-		TAX_DEMAND,
-		SUP_COM_REGNO,
-		SUP_REP_NAME,
-		SUP_COM_ID,
-		SUP_COM_NAME,
-		SUP_COM_TYPE,
-		SUP_COM_CLASSIFY,
-		SUP_COM_ADDR,
-		SUP_DEPT_NAME,
-		SUP_EMP_NAME,
-		SUP_TEL_NUM,
-		SUP_EMAIL,
-		BYR_COM_REGNO,
-		BYR_REP_NAME,
-		BYR_COM_NAME,
-		BYR_COM_TYPE,
-		BYR_COM_CLASSIFY,
-		BYR_COM_ADDR,
-		BYR_DEPT_NAME,
-		BYR_EMP_NAME,
-		BYR_TEL_NUM,
-		BYR_EMAIL,
-		SUP_AMOUNT,
-		TAX_AMOUNT,
-		TOTAL_AMOUNT,
-		CREATION_DATE,
-		LAST_UPDATE_DATE,
-		INTERFACE_BATCH_ID,
-		DTT_YN)
-		VALUES(#{conversationId},
-		'AR',
-		'2',
-		to_date('2021-12-13','yyyy-mm-dd'),
-		'01',
-		'01',
-		#{txtSupComRegNo},
-		#{txtSupComRepName},
-		'testtest',
-		#{txtSupComName},
-		#{txtSupBizType},
-		#{txtSupClassify},
-		'주소',
-		#{txtSupDeptName},
-		#{txtSupDeptPerson},
-		#{txtSupDeptTel},
-		#{txtSupDeptEmail},
-		#{txtByrComRegNo},
-		#{txtByrComRepName},
-		#{txtByrComName},
-		#{txtByrBizType},
-		#{txtByrClassify},
-		'공급받는주소',
-		#{txtByrDeptName},
-		#{txtByrDeptPerson},
-		#{txtByrDeptTel},
-		#{txtByrDeptEmail},
-		#{txtSupAmount},
-		#{txtTaxAmount},
-		#{txtTotalAmount},
-		sysdate,
-		sysdate,
-		#{txtBatchId},
-		'Y'
 		)
 	</insert>
 

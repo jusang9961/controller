@@ -32,6 +32,7 @@ public class SmartbillOldVO {
 	private String txtDirection;
 	private Long txtBatchId;
 	private String txtDate;
+	private String dtiGubun;
 	
 	
 	public String getTxtDate() {
@@ -237,5 +238,13 @@ public class SmartbillOldVO {
 	public void setTxtBigo(String txtBigo) {
 		this.txtBigo = txtBigo;
 	}
-	
+
+	public String getDtiGubun() {
+		return dtiGubun;
+	}
+
+	public void setDtiGubun(String dtiGubun) {
+		this.dtiGubun = dtiGubun;
+	}
+
 }

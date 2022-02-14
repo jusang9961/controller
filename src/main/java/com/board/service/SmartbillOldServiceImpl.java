@@ -102,7 +102,7 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 	@Override
 	public void arissueDtt(SmartbillOldVO smartbillOldvo) throws Exception{
 		
-		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
+		//logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
 		
 		    Random random = new Random();
 		    int length = random.nextInt(1)+4; //
@@ -130,7 +130,9 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		String Conversation_id = smartbillOldvo.getTxtSupComRegNo() + smartbillOldvo.getTxtByrComRegNo() + smartbillOldvo.getTxtDate() + newWord + "003";
 		smartbillOldvo.setConversationId(Conversation_id);
 		smartbillOldvo.setTxtBatchId(Batchid);
-		
+		smartbillOldvo.setDtiGubun("DTT");
+
+		logger.info("#################### Dtigubun : " + smartbillOldvo.getDtiGubun());
 		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
 		dao.arissueDtt(smartbillOldvo);
 				
