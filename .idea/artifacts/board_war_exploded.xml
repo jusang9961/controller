@@ -1,0 +1,59 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="board:war exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/board_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="board" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.10" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.6" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.6.6" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.6.6" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ojdbc8:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ucp:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:oraclepki:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:osdt_cert:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:osdt_core:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:simplefan:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ons:19.3.0.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.1" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.3.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
+          <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.3.2" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-core:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-api:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-api:1.0.6" />
+          <element id="library" level="project" name="Maven: commons-digester:commons-digester:2.0" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-servlet:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-servlet:1.0.6" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-jsp:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-template:3.0.5" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-autotag-core-runtime:1.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.6" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring3:Release" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring3:Release1" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:Release" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:Release1" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:Release1" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:Release2" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="board/web/Web" />
+    </root>
+  </artifact>
+</component>
