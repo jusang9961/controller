@@ -33,8 +33,8 @@ public class SmartbillOldVO {
 	private Long txtBatchId;
 	private String txtDate;
 	private String dtiGubun;
-	
-	
+	private String return_code;
+
 	public String getTxtDate() {
 		return txtDate;
 	}
@@ -245,6 +245,14 @@ public class SmartbillOldVO {
 
 	public void setDtiGubun(String dtiGubun) {
 		this.dtiGubun = dtiGubun;
+	}
+
+	public String getReturn_code() {
+		return return_code;
+	}
+
+	public void setReturn_code(String return_code) {
+		this.return_code = return_code;
 	}
 
 }

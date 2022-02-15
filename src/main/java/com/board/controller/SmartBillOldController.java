@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -45,14 +46,31 @@ public class SmartBillOldController {
 	public String smartbillOldReceive(Locale locale) {
 
 		return "/smartbillOld/smartbillOldReceive";
-		
+
 	}
 	
 	@RequestMapping(value = "/smartbillOldDtt", method = RequestMethod.GET)
 	public String smartbillOldDtt(Locale locale) {
 
 		return "/smartbillOld/smartbillOldDtt";
-		
+
+	}
+
+	/*
+	 * 보관함(리스트) 조회
+	 */
+	@RequestMapping(value="/smartbillOld/smartbillOldList", method = RequestMethod.GET)
+	public void smartbillOldList(Model model) throws Exception {
+
+		List<SmartbillOldVO> list = null;
+		list = service.list();
+
+		logger.info("##################################### service.list 데이터 가져오기");
+
+		model.addAttribute("list", list);
+
+		logger.info("##################################### model 이후");
+
 	}
 
 	/*
@@ -171,6 +189,10 @@ public class SmartBillOldController {
 				e.printStackTrace();
 			}
 		return "redirect:/";
-
 	}
+	/*
+	구연동 전자(세금)계산서 보관함 조회
+	*/
+
+
 }

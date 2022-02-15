@@ -58,7 +58,7 @@
 								<li><a href="/smartbillOld/smartbillOldReceive">역매입 요청</a></li>
 								<li><a href="/smartbillOld/smartbillOldDtt">정매출 거래명세서</a></li>
 							</ul></li>
-						<li><a href="/BBS/jsp/smartbillOld/smartbillOldList.jsp">전자(세금)게산서 조회</a></li>
+						<li><a href="/smartbillOld/smartbillOldList">전자(세금)게산서 조회</a></li>
 						<li><a href="javascript:popup()">Xml 업로드</a></li>
 
 

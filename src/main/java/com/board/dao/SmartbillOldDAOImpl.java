@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.board.domain.SmartbillOldVO;
 
+import java.util.List;
+
 @Repository
 public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 
@@ -61,5 +63,20 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 		sql_old.insert(namespace + ".arissueStatus", smartbillOldvo);
 
 	}
-	
+
+	/*
+	 * 세금계산서 보관함(리스트)
+	 */
+	@Override
+	public List<SmartbillOldVO> list() throws Exception{
+
+		logger.info("세금계산서 보관함(리스트) 조회");
+
+		List<SmartbillOldVO> list = sql_old.selectList(namespace + ".list");
+		logger.info(list.toString());
+		//sql_old.selectList(namespace + ".list");
+		return null;
+	}
+
+
 }

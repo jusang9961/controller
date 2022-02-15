@@ -11,6 +11,7 @@ import com.board.dao.SmartbillOldDAO;
 import com.board.domain.SmartbillOldVO;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -135,6 +136,13 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		logger.info("#################### Dtigubun : " + smartbillOldvo.getDtiGubun());
 		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
 		dao.arissueDtt(smartbillOldvo);
-				
 	}
+
+	@Override
+	public List<SmartbillOldVO> list() throws Exception {
+
+		return dao.list();
+	}
+
+
 }

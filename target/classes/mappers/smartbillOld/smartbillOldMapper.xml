@@ -83,7 +83,8 @@
 	</choose>
 	)
 	</insert>
-	
+
+	<!--  세금계산서 Item inert -->
 	<insert id="arissueItem" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_ITEM
 		(CONVERSATION_ID,
@@ -107,6 +108,7 @@
 		sysdate)
 	</insert>
 
+	<!--  거래명세서 Item inert -->
 	<insert id="arissueItemDTT" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_ITEM
 		(CONVERSATION_ID,
@@ -147,6 +149,7 @@
 		sysdate)
 	</insert>
 
+	<!-- 역매입 요청 Main insert-->
 	<insert id="issue" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_MAIN
 		(CONVERSATION_ID,
@@ -217,5 +220,17 @@
 		#{txtBatchId}
 		)
 	</insert>
+
+	<select id="list" resultType="com.board.domain.SmartbillOldVO">
+		<![CDATA[
+		SELECT RETURN_CODE
+		FROM
+		     (
+		       SELECT A.CONVERSATION_ID, A.APPROVE_ID, A.SUP_COM_REGNO, A.BYR_COM_REGNO, A.DTI_WDATE, B.SUPBUY_TYPE, B.DIRECTION, B.DTI_STATUS, B.RETURN_CODE
+		       FROM XXSB_DTI_MAIN A, XXSB_DTI_STATUS B
+			   order by dti_wdate desc)
+		where rownum <= 100
+		]]>
+	</select>
 
 </mapper>
