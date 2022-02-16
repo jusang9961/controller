@@ -152,5 +152,12 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		return dao.list(smartbillOldVO);
 	}
 
+	/*
+	 * 세금계산서 view
+	 */
+	@Override
+	public SmartbillOldVO view(String conversationid) throws Exception {
+		return dao.view(conversationid);
+	}
 
 }

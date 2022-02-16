@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.board.domain.SmartbillOldVO;
 import com.board.service.SmartbillOldService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**	
  * Handles requests for the application home page.
@@ -63,20 +64,27 @@ public class SmartBillOldController {
 	public String smartbillOldList(SmartbillOldVO smartbillOldVO, Model model) throws Exception {
 
 		List<SmartbillOldVO> list = service.list(smartbillOldVO);
-		logger.info("##################################### service.list 데이터 가져오기");
-        logger.info("##################################################" + list.get(0).getReturnCode());
-		logger.info("##################################################" + list.get(0).getConversationId());
+        //logger.info("##################################################" + list.get(0).getReturnCode());
+		//logger.info("##################################################" + list.get(0).getConversationId());
 
 		model.addAttribute("list", list);
 
 		return "/smartbillOld/smartbillOldList";
-
 	}
+
+    /*
+     * 전자(세금)계산서 view 호출
+     */
+    @RequestMapping(value="/smartbillOld/smartbillOldview", method = RequestMethod.GET)
+    public void smartbillOldview(@RequestParam("conversationId") String conversationid, Model model) throws Exception {
+
+        SmartbillOldVO smartbillOldVO = service.view(conversationid);
+        model.addAttribute("view", smartbillOldVO);
+    }
 
 	/*
 	 * 구연동 전자(세금)계산서 발행
 	 */
-	
 	@RequestMapping(value = "/smartbillOldArissuePost", method = RequestMethod.POST)
 	public String smartbillOldPost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
 

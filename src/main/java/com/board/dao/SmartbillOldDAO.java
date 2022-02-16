@@ -10,5 +10,6 @@ public interface SmartbillOldDAO {
 	public void issue(SmartbillOldVO smartbillOldvo) throws Exception;
 	public void arissueDtt(SmartbillOldVO smartbillOldvo) throws Exception;
 	public List<SmartbillOldVO> list(SmartbillOldVO smartbillOldVO) throws Exception;
+	public SmartbillOldVO view(String conversationid) throws Exception;
 
 }

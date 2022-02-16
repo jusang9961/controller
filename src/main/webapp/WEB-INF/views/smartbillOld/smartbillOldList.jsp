@@ -54,7 +54,9 @@
 
 			<c:forEach items="${list}" var="list">
 				<tr>
-					<td>${list.conversationId}</td>
+					<td>
+						<a href="/smartbillOld/smartbillOldview?conversationId=${list.conversationId}">${list.conversationId}</a>
+					</td>
 					<td>${list.issueId}</td>
 					<td>${list.txtSupComRegNo}</td>
 					<td>${list.txtByrComRegNo}</td>
@@ -124,7 +126,7 @@
 			</tbody>
 		</table>
 				
-		<input type="submit" class="btn btn-primary pull-right" value="세금계산서 조회" >
+		<%--<input type="submit" class="btn btn-primary pull-right" value="세금계산서 조회" >--%>
 	 </form>
 	</div>
 </div>

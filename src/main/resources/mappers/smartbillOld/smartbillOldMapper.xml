@@ -4,7 +4,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.mappers.smartbillOld">
 
-	<!-- 게시물 목록 -->
+	<resultMap id="view" type="com.board.domain.SmartbillOldVO">
+		<result property="txtSupComRegNo" column="SUP_COM_REGNO" />
+		<result property="txtByrComRegNo" column="BYR_COM_REGNO" />
+		<result property="txtSupComName" column="SUP_COM_NAME" />
+		<result property="txtSupComRepName" column="SUP_REP_NAME" />
+		<result property="txtByrComName" column="BYR_COM_NAME" />
+		<result property="txtByrComRepName" column="BYR_REP_NAME" />
+		<result property="txtSupComAddr" column="SUP_COM_ADDR" />
+		<result property="txtByrComAddr" column="BYR_COM_ADDR" />
+		<result property="txtSupBizType" column="SUP_COM_TYPE" />
+		<result property="txtSupClassify" column="SUP_COM_CLASSIFY" />
+		<result property="txtByrBizType" column="BYR_COM_TYPE" />
+		<result property="txtByrClassify" column="BYR_COM_CLASSIFY" />
+		<result property="txtSupDeptPerson" column="SUP_EMP_NAME" />
+		<result property="txtSupDeptTel" column="SUP_TEL_NUM" />
+		<result property="txtByrDeptPerson" column="BYR_EMP_NAME" />
+		<result property="txtByrDeptTel" column="BYR_TEL_NUM" />
+		<result property="txtSupDeptEmail" column="SUP_EMAIL" />
+		<result property="txtSupDeptName" column="SUP_DEPT_NAME" />
+		<result property="txtByrDeptEmail" column="BYR_EMAIL" />
+		<result property="txtByrDeptName" column="BYR_DEPT_NAME" />
+		<result property="txtBigo" column="REMARK" />
+		<result property="txtDate" column="DTI_WDATE" />
+		<result property="txtSupAmount" column="SUP_AMOUNT" />
+		<result property="txtTaxAmount" column="TAX_AMOUNT" />
+		<result property="txtTotalAmount" column="TOTAL_AMOUNT" />
+		<result property="txtBatchId" column="INTERFACE_BATCH_ID" />
+		<result property="conversationId" column="CONVERSATION_ID" />
+	</resultMap>
 
 	<!-- 게시물 작성 -->
 	<insert id="arissue"
@@ -230,6 +258,11 @@
 		AND ROWNUM <= 100
 		ORDER BY A.DTI_WDATE DESC
 		]]>
+	</select>
+
+	<select id="view" resultMap="view">
+		select * from xxsb_dti_main
+		where conversation_id=#{conversationId}
 	</select>
 
 </mapper>
