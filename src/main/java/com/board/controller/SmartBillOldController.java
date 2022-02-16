@@ -60,16 +60,16 @@ public class SmartBillOldController {
 	 * 보관함(리스트) 조회
 	 */
 	@RequestMapping(value="/smartbillOld/smartbillOldList", method = RequestMethod.GET)
-	public void smartbillOldList(Model model) throws Exception {
+	public String smartbillOldList(SmartbillOldVO smartbillOldVO, Model model) throws Exception {
 
-		List<SmartbillOldVO> list = null;
-		list = service.list();
-
+		List<SmartbillOldVO> list = service.list(smartbillOldVO);
 		logger.info("##################################### service.list 데이터 가져오기");
+        logger.info("##################################################" + list.get(0).getReturnCode());
+		logger.info("##################################################" + list.get(0).getConversationId());
 
 		model.addAttribute("list", list);
 
-		logger.info("##################################### model 이후");
+		return "/smartbillOld/smartbillOldList";
 
 	}
 

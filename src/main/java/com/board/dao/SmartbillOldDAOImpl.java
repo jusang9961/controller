@@ -68,14 +68,14 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 	 * 세금계산서 보관함(리스트)
 	 */
 	@Override
-	public List<SmartbillOldVO> list() throws Exception{
+	public List<SmartbillOldVO> list(SmartbillOldVO smartbillOldVO) throws Exception{
 
 		logger.info("세금계산서 보관함(리스트) 조회");
 
-		List<SmartbillOldVO> list = sql_old.selectList(namespace + ".list");
-		logger.info(list.toString());
+		return sql_old.selectList(namespace + ".list", smartbillOldVO);
+		//logger.info(list.toString());
 		//sql_old.selectList(namespace + ".list");
-		return null;
+		//return null;
 	}
 
 

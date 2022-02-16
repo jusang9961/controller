@@ -33,95 +33,76 @@ public class SmartbillOldVO {
 	private Long txtBatchId;
 	private String txtDate;
 	private String dtiGubun;
-	private String return_code;
+	private String returnCode;
+	private String issueId;
+	private String dtiStatus;
 
 	public String getTxtDate() {
 		return txtDate;
 	}
-
 	public void setTxtDate(String txtDate) {
 		this.txtDate = txtDate;
 	}
-
 	public Long getTxtBatchId() {
 		return txtBatchId;
 	}
-
 	public void setTxtBatchId(Long batchid) {
 		this.txtBatchId = batchid;
 	}
-
 	public String getTxtDirection() {
 		return txtDirection;
 	}
-
 	public void setTxtDirection(String txtDirection) {
 		this.txtDirection = txtDirection;
 	}
-
 	public String getTxtSupbuy_type() {
 		return txtSupbuy_type;
 	}
-
 	public void setTxtSupbuy_type(String txtSupbuy_type) {
 		this.txtSupbuy_type = txtSupbuy_type;
 	}
-
 	public String getMessageid() {
 		return messageid;
 	}
-
 	public void setMessageid(String messageid) {
 		this.messageid = messageid;
 	}
-	
 	public String getConversationId() {
 		return conversationId;
 	}
-
 	public void setConversationId(String conversationId) {
 		this.conversationId = conversationId;
 	}
-	
 	public int getTxtSupAmount() {
 		return txtSupAmount;
 	}
-
 	public void setTxtSupAmount(int txtSupAmount) {
 		this.txtSupAmount = txtSupAmount;
 	}
-
 	public int getTxtTaxAmount() {
 		return txtTaxAmount;
 	}
-
 	public void setTxtTaxAmount(int txtTaxAmount) {
 		this.txtTaxAmount = txtTaxAmount;
 	}
-
 	public int getTxtTotalAmount() {
 		return txtTotalAmount;
 	}
-
 	public void setTxtTotalAmount(int txtTotalAmount) {
 		this.txtTotalAmount = txtTotalAmount;
 	}
 	public String getTxtSupComRegNo() {
 		return txtSupComRegNo;
 	}
-	
 	public void setTxtSupComRegNo(String txtSupComRegNo) {
 		this.txtSupComRegNo = txtSupComRegNo;
 	}
-	
 	public String getTxtSupComName() {
 		return txtSupComName;
 	}
-	
 	public void setTxtSupComName(String txtSupComName) {
 		this.txtSupComName = txtSupComName;
 	}
-
 	public String getTxtSupComRepName() {
 		return txtSupComRepName;
 	}
@@ -146,14 +127,12 @@ public class SmartbillOldVO {
 	public void setTxtSupComAddr(String txtSupComAddr) {
 		this.txtSupComAddr = txtSupComAddr;
 	}
-	
 	public String getTxtByrComAddr() {
 		return txtByrComAddr;
 	}
 	public void setTxtByrComAddr(String txtByrComAddr) {
 		this.txtByrComAddr = txtByrComAddr;
 	}
-	
 	public String getTxtSupBizType() {
 		return txtSupBizType;
 	}
@@ -238,21 +217,32 @@ public class SmartbillOldVO {
 	public void setTxtBigo(String txtBigo) {
 		this.txtBigo = txtBigo;
 	}
-
 	public String getDtiGubun() {
 		return dtiGubun;
 	}
-
 	public void setDtiGubun(String dtiGubun) {
 		this.dtiGubun = dtiGubun;
 	}
-
-	public String getReturn_code() {
-		return return_code;
+	public String getReturnCode() {
+		return returnCode;
+	}
+	public void setReturnCode(String returnCode) {
+		this.returnCode = returnCode;
 	}
 
-	public void setReturn_code(String return_code) {
-		this.return_code = return_code;
+	public String getIssueId() {
+		return issueId;
 	}
 
+	public void setIssueId(String issueId) {
+		this.issueId = issueId;
+	}
+
+	public String getDtiStatus() {
+		return dtiStatus;
+	}
+
+	public void setDtiStatus(String dtiStatus) {
+		this.dtiStatus = dtiStatus;
+	}
 }

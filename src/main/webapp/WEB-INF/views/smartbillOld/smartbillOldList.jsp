@@ -43,18 +43,41 @@
 					<th
 						style="background-color: #ebedef; text-align: center; font-weight: bold;">문서상태</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">구분</th>
-					<th
 						style="background-color: #ebedef; text-align: center; font-weight: bold;">정/역</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold;">매출/매입</th>
 					<th
 						style="background-color: #ebedef; text-align: center; font-weight: bold;">Return_code</th>
 				</tr>
 				</thead>
 			<tbody>
+
+			<c:forEach items="${list}" var="list">
+				<tr>
+					<td>${list.conversationId}</td>
+					<td>${list.issueId}</td>
+					<td>${list.txtSupComRegNo}</td>
+					<td>${list.txtByrComRegNo}</td>
+					<td>${list.txtDate}</td>
+					<td>${list.dtiStatus}</td>
+
+					<c:set var="Direction" value="${list.txtDirection}" />
+					<c:if test="${Direction eq '2'}">
+						<td>정</td>
+					</c:if>
+					<c:if test="${Direction eq '1'}">
+						<td>역</td>
+					</c:if>
+					<td>${list.txtSupbuy_type}</td>
+					<td>${list.returnCode}</td>
+
+				</tr>
+			</c:forEach>
+
 			<%--<%
 				SmartbillOldListDAO smartbillOldListDAO = new SmartbillOldListDAO();
 				ArrayList<SmartbillOldList> list = smartbillOldListDAO.getList(1);
-								
+
 				for(int i=0; i<list.size(); i++){
 					
 				String Supbuytype =list.get(i).getSupbuytype();
