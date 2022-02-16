@@ -57,6 +57,9 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		String Conversation_id = smartbillOldvo.getTxtSupComRegNo() + smartbillOldvo.getTxtByrComRegNo() + smartbillOldvo.getTxtDate() + newWord + "003";
 		smartbillOldvo.setConversationId(Conversation_id);
 		smartbillOldvo.setTxtBatchId(Batchid);
+		smartbillOldvo.setDtiGubun("DTI");
+		smartbillOldvo.setTxtSupbuy_type("AR");
+		smartbillOldvo.setTxtDirection("2");
 		
 		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
 		dao.arissue(smartbillOldvo);
@@ -94,6 +97,9 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		String Conversation_id = smartbillOldvo.getTxtSupComRegNo() + smartbillOldvo.getTxtByrComRegNo() + smartbillOldvo.getTxtDate() + newWord + "003";
 		smartbillOldvo.setConversationId(Conversation_id);
 		smartbillOldvo.setTxtBatchId(Batchid);
+		smartbillOldvo.setDtiGubun("DTI");
+		smartbillOldvo.setTxtSupbuy_type("AP");
+		smartbillOldvo.setTxtDirection("1");
 		
 		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());
 		dao.issue(smartbillOldvo);
@@ -132,6 +138,8 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		smartbillOldvo.setConversationId(Conversation_id);
 		smartbillOldvo.setTxtBatchId(Batchid);
 		smartbillOldvo.setDtiGubun("DTT");
+		smartbillOldvo.setTxtSupbuy_type("AR");
+		smartbillOldvo.setTxtDirection("2");
 
 		logger.info("#################### Dtigubun : " + smartbillOldvo.getDtiGubun());
 		logger.info("#################### conversationId : " + smartbillOldvo.getConversationId());

@@ -45,8 +45,8 @@
 		INTERFACE_BATCH_ID,
 		DTT_YN)
 		VALUES(#{conversationId},
-		'AR',
-		'2',
+		#{txtSupbuy_type},
+		#{txtDirection},
 		to_date('2021-12-13','yyyy-mm-dd'),
 		'01',
 		'01',
@@ -98,18 +98,18 @@
 		LAST_UPDATE_DATE)
 		VALUES(
 		#{conversationId},
-		'AR',
-		'2',
+		#{txtSupbuy_type},
+		#{txtDirection},
 		'1',
 		#{txtSupAmount},
 		#{txtTaxAmount},
-		'DTI',
+		#{dtiGubun},
 		sysdate,
 		sysdate)
 	</insert>
 
 	<!--  거래명세서 Item inert -->
-	<insert id="arissueItemDTT" parameterType="com.board.domain.SmartbillOldVO">
+		<insert id="arissueItemDTT" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_ITEM
 		(CONVERSATION_ID,
 		 SUPBUY_TYPE,
@@ -122,12 +122,12 @@
 		 LAST_UPDATE_DATE)
 		VALUES(
 				  #{conversationId},
-				  'AR',
-				  '2',
+				  #{txtSupbuy_type},
+				  #{txtDirection},
 				  '2',
 				  #{txtSupAmount},
 				  #{txtTaxAmount},
-				  'DTT',
+				  #{dtiGubun},
 				  sysdate,
 				  sysdate)
 	</insert>
@@ -142,14 +142,15 @@
 		LAST_UPDATE_DATE)
 		VALUES(
 		#{conversationId},
-		'AR',
-		'2',
+		#{txtSupbuy_type},
+		#{txtDirection},
 		'S',
 		sysdate,
 		sysdate)
 	</insert>
 
 	<!-- 역매입 요청 Main insert-->
+	<!-- 2022-02-16 현재 사용안함. arissue에 통합 -->
 	<insert id="issue" parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_MAIN
 		(CONVERSATION_ID,
