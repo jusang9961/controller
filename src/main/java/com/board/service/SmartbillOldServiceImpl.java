@@ -160,4 +160,9 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		return dao.view(conversationid);
 	}
 
+	@Override
+	public SmartbillOldVO status(String conversationid) throws Exception {
+		return dao.status(conversationid);
+	}
+
 }

@@ -32,9 +32,16 @@
 		<result property="txtTotalAmount" column="TOTAL_AMOUNT" />
 		<result property="txtBatchId" column="INTERFACE_BATCH_ID" />
 		<result property="conversationId" column="CONVERSATION_ID" />
+		<result property="txtSupbuy_type" column="SUPBUY_TYPE" />
+        <result property="dtiStatus" column="SUPBUY_TYPE" />
+        <result property="txtDirection" column="DIRECTION" />
 	</resultMap>
 
-	<!-- 게시물 작성 -->
+    <resultMap id="status" type="com.board.domain.SmartbillOldVO">
+        <result property="dtiStatus" column="dti_status" />
+    </resultMap>
+
+    <!-- 게시물 작성 -->
 	<insert id="arissue"
 		parameterType="com.board.domain.SmartbillOldVO">
 		INSERT INTO XXSB_DTI_MAIN
@@ -264,5 +271,10 @@
 		select * from xxsb_dti_main
 		where conversation_id=#{conversationId}
 	</select>
+
+    <select id="status" resultMap="status">
+        select * from xxsb_dti_status
+        where conversation_id=#{conversationId}
+    </select>
 
 </mapper>

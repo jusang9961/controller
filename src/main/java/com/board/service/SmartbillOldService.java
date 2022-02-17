@@ -12,5 +12,6 @@ public interface SmartbillOldService {
 	public void arissueDtt(SmartbillOldVO smartbillOldvo) throws Exception;
 	public List<SmartbillOldVO> list(SmartbillOldVO smartbillOldVO) throws Exception;
 	public SmartbillOldVO view(String conversationid) throws Exception;
+	public SmartbillOldVO status(String conversationid) throws Exception;
 
 }

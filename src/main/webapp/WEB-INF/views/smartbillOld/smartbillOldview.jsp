@@ -112,28 +112,49 @@
                 </tr>
                 </tbody>
             </table>
-            <%--
-                            <%
-                    if("AR".equals(SmartbillOld.getTxtSupbuy_type()) && "2".equals(SmartbillOld.getTxtDirection()) && "I".equals(dtistatus)) {
-                    %>
-                            <input type="submit" class="btn btn-primary pull-right"
-                                name="statusChange" value="세금계산서발행취소">
-                            <%
-                    } else if("AP".equals(SmartbillOld.getTxtSupbuy_type()) && "2".equals(SmartbillOld.getTxtDirection()) && "I".equals(dtistatus)) {
-                    %>
-                            <input type="submit" class="btn btn-primary pull-right"
-                                name="statusChange" value="수신승인"> <input type="submit"
-                                class="btn btn-primary pull-right" name="statusChange" value="수신거부">
-                            <%
-                    }
-                    %>--%>
+
+            <c:set var="status" value="${status}" />
+            <c:set var="view" value="${view}" />
+
+            <c:if test="${view.txtSupbuy_type eq 'AR' && view.txtDirection eq '2' && status.dtiStatus eq 'I'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="세금계산서발행취소">
+            </c:if>
+            <c:if test="${view.txtSupbuy_type eq 'AP' && view.txtDirection eq '2' && status.dtiStatus eq 'I'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="수신승인">
+                <td></td>
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="수신거부">
+            </c:if>
+            <c:if test="${view.txtSupbuy_type eq 'AP' && view.txtDirection eq '1' && status.dtiStatus eq 'V'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="역매입요청취소">
+            </c:if>
+            <c:if test="${view.txtSupbuy_type eq 'AP' && view.txtDirection eq '1' && status.dtiStatus eq 'I'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="수신승인">
+            </c:if>
+            <c:if test="${view.txtSupbuy_type eq 'AR' && view.txtDirection eq '1' && status.dtiStatus eq 'V'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="역매출발행">
+                <td></td>
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="역매출수신거부">
+            </c:if>
+            <c:if test="${view.txtSupbuy_type eq 'AR' && view.txtDirection eq '1' && status.dtiStatus eq 'I'}">
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="역매출발행취소">
+                <td></td>
+                <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="역매출수신승인">
+            </c:if>
+
+        <%-- <c:choose>
+                   <c:when test="${txtSupbuy_type eq 'AR' && txtDirection eq '2' && dtistatus eq 'I'}">
+                        <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="세금계산서발행취소">
+                    </c:when>
+                    <c:otherwise>
+                        <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="수신승인"> <input type="submit" class="btn btn-primary pull-right" name="statusChange" value="수신거부">
+                    </c:otherwise>
+                </c:choose>--%>
         </form>
     </div>
 </div>
 
 <script>
     $('input').prop('readonly', true);
-
 </script>
 
 </body>

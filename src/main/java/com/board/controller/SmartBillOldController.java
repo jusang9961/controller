@@ -79,7 +79,11 @@ public class SmartBillOldController {
     public void smartbillOldview(@RequestParam("conversationId") String conversationid, Model model) throws Exception {
 
         SmartbillOldVO smartbillOldVO = service.view(conversationid);
+        SmartbillOldVO smartbillOldVO1 = service.status(conversationid);
+
         model.addAttribute("view", smartbillOldVO);
+        model.addAttribute("status", smartbillOldVO1);
+
     }
 
 	/*

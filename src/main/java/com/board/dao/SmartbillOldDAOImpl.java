@@ -86,8 +86,13 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 	 * 세금계산서 view
 	 */
     @Override
-    public SmartbillOldVO view(String conversationid) throws Exception{
-        return sql_old.selectOne(namespace + ".view", conversationid);
-    }
+    public SmartbillOldVO view(String conversationid) throws Exception {
+		return sql_old.selectOne(namespace + ".view", conversationid);
+	}
+
+	@Override
+	public SmartbillOldVO status(String conversationid) throws Exception {
+		return sql_old.selectOne(namespace + ".status", conversationid);
+	}
 
 }
