@@ -257,6 +257,7 @@
 		)
 	</insert>
 
+	<!-- 보관함 리스트 조회 -->
 	<select id="list" resultType="com.board.domain.SmartbillOldVO">
 		<![CDATA[
 		SELECT A.CONVERSATION_ID as conversationId, A.APPROVE_ID as issueId, A.SUP_COM_REGNO as txtSupComRegNo, A.BYR_COM_REGNO as txtByrComRegNo, A.DTI_WDATE as txtDate, A.SUPBUY_TYPE as txtSupbuy_type, B.DIRECTION as txtDirection, B.DTI_STATUS as dtiStatus, B.RETURN_CODE as returnCode
@@ -267,6 +268,7 @@
 		]]>
 	</select>
 
+	<!-- 보관함 상세조회-->
 	<select id="view" resultMap="view">
 		select * from xxsb_dti_main
 		where conversation_id=#{conversationId}
@@ -276,5 +278,12 @@
         select * from xxsb_dti_status
         where conversation_id=#{conversationId}
     </select>
+
+	<!-- 세금계산서 상태변경 -->
+	<update id="statusChange"  parameterType="com.board.domain.SmartbillOldVO">
+		update XXSB_DTI_MAIN
+			set interface_batch_id = #{txtBatchId}
+		where conversation_id = #{conversationId}
+	</update>
 
 </mapper>

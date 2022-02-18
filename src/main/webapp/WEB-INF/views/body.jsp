@@ -13,12 +13,11 @@
 		}
 		//로그인이 된 회원은 로그인의 정보를 담을수 있도록 설정
 	%>
-	<!-- 
+
 <audio controls loop controls autoplay>
 	<source src="lovepratice.mp3" type="audio/mpeg" >
 </audio>
-	<!-- 오디오 태그, hidden => 오디오창 안보이게, loop => 무한반복, autoplay => 자동재생 
- -->
+	<!-- 오디오 태그, hidden => 오디오창 안보이게, loop => 무한반복, autoplay => 자동재생  -->
 	<nav class="navbar navbar-default">
 		<!-- navbar-색상(inverse = 검은색, default 22222= 색x) -->
 		<div class="navbar-header">
@@ -59,7 +58,7 @@
 								<li><a href="/smartbillOld/smartbillOldDtt">정매출 거래명세서</a></li>
 							</ul></li>
 						<li><a href="/smartbillOld/smartbillOldList">전자(세금)게산서 조회</a></li>
-						<li><a href="javascript:popup()">Xml 업로드</a></li>
+						<li><a href="javascript:xmlPopUp()">Xml 업로드</a></li>
 
 
 						<li><a href="/BBS/jsp/smartbillOld/smartbillOldCert.jsp">인증서 등록</a></li>

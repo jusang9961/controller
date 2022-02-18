@@ -14,6 +14,7 @@
 <script src="/js/bootstrap.js"></script>
 <script src="/js/common.js"></script>
 
+
 <!--<link rel="stylesheet" href="css/bootstrap.css"> -->
 <!-- 스타일시트로 css폴더의 bootstrap.css파일 사용 -->
 <title>SmartBill Test</title>
