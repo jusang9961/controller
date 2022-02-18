@@ -12,6 +12,6 @@ public interface SmartbillOldDAO {
 	public List<SmartbillOldVO> list(SmartbillOldVO smartbillOldVO) throws Exception;
 	public SmartbillOldVO view(String conversationid) throws Exception;
 	public SmartbillOldVO status(String conversationid) throws Exception;
-
+	public void statusChange(SmartbillOldVO smartbillOldVO) throws Exception;
 
 }

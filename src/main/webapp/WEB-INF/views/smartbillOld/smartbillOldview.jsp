@@ -11,11 +11,11 @@
 <!-- <body style= "background-color : lightblue;"> -->
 <body>
 <!-- body 파일 -->
-<%@ include file="/WEB-INF/views/body.jsp" %>
+    <%@ include file="/WEB-INF/views/body.jsp" %>
 
 <div class="container">
     <div class="row">
-        <form method="post" action="smartbillOldChange.jsp">
+        <form method="post" action="smartbillOldChange">
             <table class="table table-striped"
                    style="text-align: center; border: 1px #dddddd">
                 <thead>

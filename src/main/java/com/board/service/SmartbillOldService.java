@@ -13,5 +13,7 @@ public interface SmartbillOldService {
 	public List<SmartbillOldVO> list(SmartbillOldVO smartbillOldVO) throws Exception;
 	public SmartbillOldVO view(String conversationid) throws Exception;
 	public SmartbillOldVO status(String conversationid) throws Exception;
+	public SmartbillOldVO statusChange(SmartbillOldVO smartbillOldVO) throws Exception;
+	//public SmartbillOldVO statusSelect(String statuschange, SmartbillOldVO smartbillOldVO) throws Exception;
 
 }

@@ -165,4 +165,27 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 		return dao.status(conversationid);
 	}
 
+	/*
+	 * 세금계산서 상태 변경
+	 */
+	@Override
+	public SmartbillOldVO statusChange(SmartbillOldVO smartbillOldVO) throws Exception{
+
+		smartbillOldVO.setTxtBatchId(Batchid);
+		dao.statusChange(smartbillOldVO);
+
+		return smartbillOldVO;
+	}
+
+	// 미사용 controller에서 처리
+    /*@Override
+    public SmartbillOldVO statusSelect(String statuschange, SmartbillOldVO smartbillOldVO) throws Exception{
+
+	    if("세금계산서발행취소".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("O");
+        }
+
+	    return smartbillOldVO;
+
+    }*/
 }

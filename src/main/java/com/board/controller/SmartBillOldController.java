@@ -203,8 +203,84 @@ public class SmartBillOldController {
 		return "redirect:/";
 	}
 	/*
-	구연동 전자(세금)계산서 보관함 조회
+	구연동 전자(세금)계산서 상태변경
 	*/
+
+    @RequestMapping(value = "/smartbillOld/smartbillOldChange", method = RequestMethod.POST)
+    public String smartbillOldChange(@RequestParam("statusChange") String statuschange,
+                                     @RequestParam("conversationId") String conversationid, SmartbillOldVO smartbillOldVO) throws Exception{
+        BufferedReader in = null;
+        String signal = null;
+        smartbillOldVO.setConversationId(conversationid);
+
+        if("수신승인".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("C");
+            signal = "APPROVE";
+        } else if("수신거부".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("R");
+            signal = "RIREJECT";
+        } else if("역매입요청취소".equals(statuschange)) {
+            smartbillOldVO.setDtiStatus("W");
+            signal = "CANCELRREQUEST";
+        } else if("역매출수신거부".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("T");
+            signal = "RIREJECT";
+        } else if("역매출발행취소".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("O");
+            signal = "CANCELALL";
+        } else if("역매출수신승인".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("C");
+            signal = "APPROVE";
+        } else if("세금계산서발행취소".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("O");
+            signal = "CANCELALL";
+        } else if("역매출발행".equals(statuschange)){
+            smartbillOldVO.setDtiStatus("V");
+        }
+
+        logger.info("#############################" + smartbillOldVO.getTxtBatchId());
+
+        //service.statusSelect(statuschange, smartbillOldVO);
+        service.statusChange(smartbillOldVO);
+
+        logger.info("#############################" + smartbillOldVO.getDtiStatus());
+        logger.info("#############################" + smartbillOldVO.getTxtBatchId());
+
+
+        // 세금계산서 상태변경 호출
+            try {
+
+                if (smartbillOldVO.getDtiStatus().equals("V")){
+
+                    URL obj = new URL("http://127.0.0.1:10001/CALLSB_V3/XXSB_DTI_STATUS_CHANGE.ASP?BATCH_ID=" + smartbillOldVO.getTxtBatchId() + "&ID=29TEST&PASS=TEST&STATUS=" + smartbillOldVO.getDtiStatus() + "&SIGNAL=" + signal);
+
+                    HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+                    con.setRequestMethod("GET");
+
+                    in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+
+                } else {
+                    URL obj = new URL("http://127.0.0.1:10001/CALLSB_V3/XXSB_DTI_STATUS_CHANGE.ASP?BATCH_ID=" + smartbillOldVO.getTxtBatchId() + "&ID=29TEST&PASS=TEST&STATUS=" + smartbillOldVO.getDtiStatus() + "&SIGNAL=" + signal);
+
+                    HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+                    con.setRequestMethod("GET");
+
+                    in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+
+                }
+
+
+
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+
+        return "redirect:/";
+
+    }
+
+
+
 
 
 }

@@ -95,4 +95,9 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 		return sql_old.selectOne(namespace + ".status", conversationid);
 	}
 
+	@Override
+    public void statusChange(SmartbillOldVO smartbillOldVO) throws Exception {
+
+        sql_old.update(namespace + ".statusChange", smartbillOldVO);
+    }
 }
