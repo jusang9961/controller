@@ -61,7 +61,7 @@
 						<li><a href="javascript:xmlPopUp()">Xml 업로드</a></li>
 
 
-						<li><a href="/BBS/jsp/smartbillOld/smartbillOldCert.jsp">인증서 등록</a></li>
+						<li><a href="/smartbillOld/smartbillOldCert">인증서 등록</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"

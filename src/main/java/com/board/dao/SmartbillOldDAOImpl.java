@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.board.domain.SmartbillOldVO;
+import com.board.domain.SmartbillOldCertVO;
 
 import java.util.List;
 
@@ -95,9 +96,20 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 		return sql_old.selectOne(namespace + ".status", conversationid);
 	}
 
+	/*
+	 * 세금계산서 상태변경
+	 */
 	@Override
     public void statusChange(SmartbillOldVO smartbillOldVO) throws Exception {
 
         sql_old.update(namespace + ".statusChange", smartbillOldVO);
+    }
+
+    /*
+     * 인증서 리스트 조회
+     */
+    @Override
+	public List<SmartbillOldCertVO> certList(SmartbillOldCertVO smartbillOldCertVO) throws Exception {
+    	return sql_old.selectList(namespace + ".certList", smartbillOldCertVO);
     }
 }

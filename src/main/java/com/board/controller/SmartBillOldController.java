@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.board.domain.SmartbillOldCertVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cglib.core.Local;
@@ -202,10 +203,10 @@ public class SmartBillOldController {
 			}
 		return "redirect:/";
 	}
+
 	/*
 	구연동 전자(세금)계산서 상태변경
 	*/
-
     @RequestMapping(value = "/smartbillOld/smartbillOldChange", method = RequestMethod.POST)
     public String smartbillOldChange(@RequestParam("statusChange") String statuschange,
                                      @RequestParam("conversationId") String conversationid, SmartbillOldVO smartbillOldVO) throws Exception{
@@ -264,22 +265,33 @@ public class SmartBillOldController {
 
                     HttpURLConnection con = (HttpURLConnection)obj.openConnection();
                     con.setRequestMethod("GET");
-
                     in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 
                 }
-
-
-
             } catch(Exception e) {
                 e.printStackTrace();
             }
-
         return "redirect:/";
 
     }
 
+    /*
+	구연동 전자(세금)계산서 인증서 등록
+	*/
 
+	@RequestMapping(value="/smartbillOld/smartbillOldCert", method = RequestMethod.GET)
+	public String smartbillOldCertList(SmartbillOldCertVO smartbillOldCertVO, Model model) throws Exception {
+
+		List<SmartbillOldCertVO> certList = service.certList(smartbillOldCertVO);
+        logger.info("################## getCertRegno ###### : " + certList.get(0).getCertRegno());
+        logger.info("################## getCertComName ###### : " + certList.get(0).getCertComName());
+        logger.info("################## getUserDn ###### : " + certList.get(0).getUserDn());
+		logger.info("################## getExpirationDate ###### : " + certList.get(0).getExpirationDate());
+
+		model.addAttribute("certList", certList);
+
+		return "/smartbillOld/smartbillOldCert";
+	}
 
 
 

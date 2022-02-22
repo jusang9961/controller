@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.board.dao.SmartbillOldDAO;
 import com.board.domain.SmartbillOldVO;
+import com.board.domain.SmartbillOldCertVO;
 
 import java.util.Date;
 import java.util.List;
@@ -188,4 +189,13 @@ public class SmartbillOldServiceImpl implements SmartbillOldService {
 	    return smartbillOldVO;
 
     }*/
+
+	/*
+	 * 인증서 리스트 조회
+	 */
+	@Override
+	public List<SmartbillOldCertVO>	certList(SmartbillOldCertVO smartbillOldCertVO) throws Exception{
+
+		return dao.certList(smartbillOldCertVO);
+	}
 }

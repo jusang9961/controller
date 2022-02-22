@@ -1,6 +1,7 @@
 package com.board.dao;
 
 import com.board.domain.SmartbillOldVO;
+import com.board.domain.SmartbillOldCertVO;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface SmartbillOldDAO {
 	public SmartbillOldVO view(String conversationid) throws Exception;
 	public SmartbillOldVO status(String conversationid) throws Exception;
 	public void statusChange(SmartbillOldVO smartbillOldVO) throws Exception;
+	public List<SmartbillOldCertVO> certList(SmartbillOldCertVO smartbillOldCertVO) throws Exception;
 
 }

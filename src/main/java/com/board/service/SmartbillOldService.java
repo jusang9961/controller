@@ -2,6 +2,7 @@ package com.board.service;
 
 
 import com.board.domain.SmartbillOldVO;
+import com.board.domain.SmartbillOldCertVO;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface SmartbillOldService {
 	public SmartbillOldVO status(String conversationid) throws Exception;
 	public SmartbillOldVO statusChange(SmartbillOldVO smartbillOldVO) throws Exception;
 	//public SmartbillOldVO statusSelect(String statuschange, SmartbillOldVO smartbillOldVO) throws Exception;
+	public  List<SmartbillOldCertVO> certList(SmartbillOldCertVO smartbillOldCertVO) throws Exception;
 
 }

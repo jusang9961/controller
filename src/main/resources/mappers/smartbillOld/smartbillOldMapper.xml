@@ -41,6 +41,13 @@
         <result property="dtiStatus" column="dti_status" />
     </resultMap>
 
+	<resultMap id="certList" type="com.board.domain.SmartbillOldCertVO">
+		<result property="certRegno" column="CERT_REGNO" />
+		<result property="certComName" column="CERT_COMNAME" />
+		<result property="userDn" column="USERDN" />
+		<result property="expirationDate" column="EXPIRATION_DATE" />
+	</resultMap>
+
     <!-- 게시물 작성 -->
 	<insert id="arissue"
 		parameterType="com.board.domain.SmartbillOldVO">
@@ -285,5 +292,10 @@
 			set interface_batch_id = #{txtBatchId}
 		where conversation_id = #{conversationId}
 	</update>
+
+	<!-- 인증서 리스트 조회-->
+	<select id="certList" resultMap="certList">
+		select * from xxsb_dti_cert
+	</select>
 
 </mapper>
