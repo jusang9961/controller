@@ -14,9 +14,9 @@
 		//로그인이 된 회원은 로그인의 정보를 담을수 있도록 설정
 	%>
 
-<audio controls loop controls autoplay>
+<%--<audio controls loop controls autoplay>
 	<source src="lovepratice.mp3" type="audio/mpeg" >
-</audio>
+</audio>--%>
 	<!-- 오디오 태그, hidden => 오디오창 안보이게, loop => 무한반복, autoplay => 자동재생  -->
 	<nav class="navbar navbar-default">
 		<!-- navbar-색상(inverse = 검은색, default 22222= 색x) -->
