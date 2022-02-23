@@ -166,7 +166,7 @@
 							size="40" disabled/></td>
 						<th colspan="2" style="text-align: right;">Batch_id</th>
 						<td class="DTILeftText" colspan="2"><input type="text"
-							id="conversationId" name="txtBatchId"
+							id="txtBatchId" name="txtBatchId"
 							value="자동입력" maxlength="30"
 							size="20" disabled/></td>
 					</tr>
