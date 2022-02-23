@@ -9,7 +9,7 @@
 	<%@ include file="/WEB-INF/views/head.jsp" %>
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini">
 	<!-- body 파일 -->
 	<%@ include file="/WEB-INF/views/body.jsp" %>
 	

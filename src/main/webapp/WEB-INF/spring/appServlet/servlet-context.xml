@@ -46,6 +46,7 @@
 		<interceptor>
 <!-- 			<mapping path="/board/*.d" /> -->
 			<mapping path="/smartbillOld/*" />
+			<mapping path="/smartbillNew/*" />
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
 	</interceptors>

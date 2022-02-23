@@ -59,13 +59,6 @@ public class UserController {
 		
 		HttpSession session = request.getSession();
 
-/*
-		logger.info("############################" + userVO1.getUserID());
-		logger.info("############################" + userVO.getUserID());
-		logger.info("############################" + userVO1.getUserPass());
-		logger.info("############################" + userVO.getUserPass());
-*/
-
 		try{
 			UserVO userVO1 = service.login(userVO);
 
@@ -76,7 +69,6 @@ public class UserController {
 			} else {
 				session.setAttribute("userID", userVO1.getUserID());
 			}
-
 		} catch (Exception e){
 			System.out.println("로그인 정보가 없습니다.");
 		};
