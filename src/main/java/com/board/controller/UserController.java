@@ -58,24 +58,31 @@ public class UserController {
 	public String postLogin(UserVO userVO, HttpServletRequest request, Model model) throws Exception{
 		
 		HttpSession session = request.getSession();
-		UserVO userVO1 = service.login(userVO);
-		
+
+/*
 		logger.info("############################" + userVO1.getUserID());
+		logger.info("############################" + userVO.getUserID());
 		logger.info("############################" + userVO1.getUserPass());
 		logger.info("############################" + userVO.getUserPass());
-				
-		if (userVO1 == null || !BCrypt.checkpw(userVO.getUserPass(), userVO1.getUserPass())) {
-			System.out.print("로그인 정보가 없습니다.");
-			model.addAttribute("msg", "로그인 정보가 없습니다.");
-			model.addAttribute("url", "/");
+*/
+
+		try{
+			UserVO userVO1 = service.login(userVO);
+
+			if (userVO1 == null || !BCrypt.checkpw(userVO.getUserPass(), userVO1.getUserPass())) {
+				System.out.print("로그인 정보가 없습니다.");
+				model.addAttribute("msg", "로그인 정보가 없습니다.");
+				model.addAttribute("url", "/");
 			} else {
 				session.setAttribute("userID", userVO1.getUserID());
 			}
 
+		} catch (Exception e){
+			System.out.println("로그인 정보가 없습니다.");
+		};
+
 		return "redirect:/";
 
-		//model.addAttribute("Login", userVO);
-		
 	}
 	
 	@RequestMapping(value = "/Logout", method = RequestMethod.GET)
