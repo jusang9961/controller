@@ -48,6 +48,21 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 		sql_old.insert(namespace + ".arissueItem", smartbillOldvo);
 		sql_old.insert(namespace + ".arissueStatus", smartbillOldvo);
 	}
+
+	/*
+	 * 세금계산서/거래명세서 역매입 요청
+	 */
+	@Override
+	public void issueDtt(SmartbillOldVO smartbillOldVO) throws Exception {
+
+		sql_old.insert(namespace + ".arissue", smartbillOldVO);
+		sql_old.insert(namespace + ".arissueItemDTT", smartbillOldVO);
+		sql_old.insert(namespace + ".arissueStatus", smartbillOldVO);
+
+		// DTI item insert
+		smartbillOldVO.setDtiGubun("DTI");
+		sql_old.insert(namespace + ".arissueItem", smartbillOldVO);
+	}
 	
 	/*
 	 * 정매출(거래명세서 포함) 발행
@@ -55,15 +70,11 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 	@Override
 	public void arissueDtt(SmartbillOldVO smartbillOldvo) throws Exception {
 
-		logger.info("전자(세금)계산서 발행(거래명세서 포함) XXSB_DTI_MAIN insert");
 		sql_old.insert(namespace + ".arissue", smartbillOldvo);
-		logger.info("전자(세금)계산서 발행 거래명세서 XXSB_DTI_ITEM insert");
 		sql_old.insert(namespace + ".arissueItemDTT", smartbillOldvo);
-		logger.info("전자(세금)계산서 발행(거래명세서 포함) XXSB_DTI_stats insert");
 		sql_old.insert(namespace + ".arissueStatus", smartbillOldvo);
 
 		// DTI item insert
-		logger.info("전자(세금)계산서 발행 XXSB_DTI_ITEM insert");
 		smartbillOldvo.setDtiGubun("DTI");
 		sql_old.insert(namespace + ".arissueItem", smartbillOldvo);
 
@@ -112,4 +123,5 @@ public class SmartbillOldDAOImpl implements SmartbillOldDAO {
 	public List<SmartbillOldCertVO> certList(SmartbillOldCertVO smartbillOldCertVO) throws Exception {
     	return sql_old.selectList(namespace + ".certList", smartbillOldCertVO);
     }
+
 }

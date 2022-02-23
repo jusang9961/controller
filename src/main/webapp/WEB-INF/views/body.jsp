@@ -54,8 +54,9 @@
 						</a>
 							<ul class="dropdown-menu">
 								<li><a href="/smartbillOld/smartbillOldArissue">정매출 발행</a></li>
+								<li><a href="/smartbillOld/smartbillOldDtt">정매출(거래명세서 포함) 발행</a></li>
 								<li><a href="/smartbillOld/smartbillOldReceive">역매입 요청</a></li>
-								<li><a href="/smartbillOld/smartbillOldDtt">정매출 거래명세서</a></li>
+								<li><a href="/smartbillOld/smartbillOldReceiveDtt">역매입(거래명세서 포함) 요청</a></li>
 							</ul></li>
 						<li><a href="/smartbillOld/smartbillOldList">전자(세금)게산서 조회</a></li>
 						<li><a href="javascript:xmlPopUp()">Xml 업로드</a></li>

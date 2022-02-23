@@ -2,7 +2,6 @@ package com.board.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.board.domain.SmartbillOldCertVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +56,13 @@ public class SmartBillOldController {
 
 	}
 
+	@RequestMapping(value = "/smartbillOldReceiveDtt", method = RequestMethod.GET)
+	public String smartbillOldReceiveDtt() {
+
+		return "/smartbillOld/smartbillOldReceiveDtt";
+
+	}
+
 	/*
 	 * 보관함(리스트) 조회
 	 */
@@ -84,7 +89,6 @@ public class SmartBillOldController {
 
         model.addAttribute("view", smartbillOldVO);
         model.addAttribute("status", smartbillOldVO1);
-
     }
 
 	/*
@@ -97,56 +101,42 @@ public class SmartBillOldController {
 		HttpSession session = request.getSession();
 
 		logger.info("전자세금계산서 전송(ARISSUE)");
-		
-		logger.info("############################session.getAttribute(\"userID\") : " + session.getAttribute("userID"));
 
 		if(session.getAttribute("userID") != null) {
 
 			// 작성일자의 특수문자 제거
 			String wdate = smartbillOldvo.getTxtDate().replaceAll("[^0-9]", "");
 			smartbillOldvo.setTxtDate(wdate);
-
 			service.arissue(smartbillOldvo);
 
 			// 세금계산서 발행 호출
 			try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ARISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
-				
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-
 				con.setRequestMethod("GET");
-
 				in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-		
 			System.out.println("세션이 존재하지 않습니다. 로그인 해주세요");
 			System.out.println("###################################");
 			System.out.println("###################################");
-
 			/*
 			 * request.setAttribute("msg", "로그인 필요"); request.setAttribute("url",
 			 * "LoginCheck");
 			 */
-			
 		}
 		return "redirect:/";
-
 	}
 
 	/*
 	 * 구연동 전자(세금)계산서 역매입 요청
 	 */
-	
 	@RequestMapping(value = "/smartbillOld/smartbillOldReceivePost", method = RequestMethod.POST)
 	public String smartbillOldReceivePost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
 
 		BufferedReader in = null;
-
-		logger.info("전자세금계산서 역매입 요청 전송(RARISSUE)");
 
 			// 작성일자의 특수문자 제거
 			String wdate = smartbillOldvo.getTxtDate().replaceAll("[^0-9]", "");
@@ -157,30 +147,22 @@ public class SmartBillOldController {
 			// 역매입 요청 발행
 			try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
-
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-
 				con.setRequestMethod("GET");
-		
 				in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-				
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		return "redirect:/";
-
 	}
 	
 	/*
 	 * 구연동 전자(세금)계산서 거래명세서 포함 발행
 	 */
-	
 	@RequestMapping(value = "/smartbillOld/smartbillOldArissueDttPost", method = RequestMethod.POST)
 	public String smartbillOldArissueDttPost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
 
 		BufferedReader in = null;
-
-		logger.info("전자세금계산서 역매입 요청 전송(RARISSUE)");
 
 			// 작성일자의 특수문자 제거
 			String wdate = smartbillOldvo.getTxtDate().replaceAll("[^0-9]", "");
@@ -191,18 +173,42 @@ public class SmartBillOldController {
 			// 역매입 요청 발행
 			try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ARISSUE_DTT.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
-
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
-
 				con.setRequestMethod("GET");
-		
 				in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-				
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		return "redirect:/";
 	}
+
+    /*
+     * 구연동 전자(세금)계산서/거래명세서 역매입 요청
+     */
+    @RequestMapping(value = "/smartbillOld/smartbillOldReceiveDttPost", method = RequestMethod.POST)
+    public String smartbillOldReceiveDttPost(HttpServletRequest request, SmartbillOldVO smartbillOldvo) throws Exception{
+
+        BufferedReader in = null;
+
+        logger.info("전자세금계산서/거래명세서 역매입 요청 전송(ISSUE_T)");
+
+        // 작성일자의 특수문자 제거
+        String wdate = smartbillOldvo.getTxtDate().replaceAll("[^0-9]", "");
+        smartbillOldvo.setTxtDate(wdate);
+
+        service.issueDtt(smartbillOldvo);
+
+        // 역매입 요청 발행
+        try {
+            URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ISSUE_T.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
+            HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+            con.setRequestMethod("GET");
+            in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
 
 	/*
 	구연동 전자(세금)계산서 상태변경
@@ -239,46 +245,31 @@ public class SmartBillOldController {
             smartbillOldVO.setDtiStatus("V");
         }
 
-        logger.info("#############################" + smartbillOldVO.getTxtBatchId());
-
-        //service.statusSelect(statuschange, smartbillOldVO);
         service.statusChange(smartbillOldVO);
-
-        logger.info("#############################" + smartbillOldVO.getDtiStatus());
-        logger.info("#############################" + smartbillOldVO.getTxtBatchId());
-
 
         // 세금계산서 상태변경 호출
             try {
 
                 if (smartbillOldVO.getDtiStatus().equals("V")){
-
-                    URL obj = new URL("http://127.0.0.1:10001/CALLSB_V3/XXSB_DTI_STATUS_CHANGE.ASP?BATCH_ID=" + smartbillOldVO.getTxtBatchId() + "&ID=29TEST&PASS=TEST&STATUS=" + smartbillOldVO.getDtiStatus() + "&SIGNAL=" + signal);
-
+                    URL obj = new URL("http://127.0.0.1:10001/CALLSB_V3/XXSB_DTI_RARISSUE.ASP?BATCH_ID=" + smartbillOldVO.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
                     HttpURLConnection con = (HttpURLConnection)obj.openConnection();
                     con.setRequestMethod("GET");
-
                     in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-
                 } else {
                     URL obj = new URL("http://127.0.0.1:10001/CALLSB_V3/XXSB_DTI_STATUS_CHANGE.ASP?BATCH_ID=" + smartbillOldVO.getTxtBatchId() + "&ID=29TEST&PASS=TEST&STATUS=" + smartbillOldVO.getDtiStatus() + "&SIGNAL=" + signal);
-
                     HttpURLConnection con = (HttpURLConnection)obj.openConnection();
                     con.setRequestMethod("GET");
                     in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-
                 }
             } catch(Exception e) {
                 e.printStackTrace();
             }
         return "redirect:/";
-
     }
 
     /*
 	구연동 전자(세금)계산서 인증서 등록
 	*/
-
 	@RequestMapping(value="/smartbillOld/smartbillOldCert", method = RequestMethod.GET)
 	public String smartbillOldCertList(SmartbillOldCertVO smartbillOldCertVO, Model model) throws Exception {
 
