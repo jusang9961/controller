@@ -14,7 +14,7 @@
 
 <div class="container">
 	<div class="row">
-		<form id="fr" name="fr" method="post" action="smartbillnew/smartbillNewAction.jsp" onsubmit="return issueCheck();">
+		<form id="fr" name="fr" method="post" action="smartbillNewArissuePost" onsubmit="return issueCheck();">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px #dddddd">
 				<thead>

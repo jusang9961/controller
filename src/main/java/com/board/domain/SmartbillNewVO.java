@@ -1,5 +1,7 @@
 package com.board.domain;
 
+import java.util.Random;
+
 public class SmartbillNewVO {
 
 	private String messageid;
@@ -36,6 +38,7 @@ public class SmartbillNewVO {
 	private String returnCode;
 	private String issueId;
 	private String dtiStatus;
+	private String signal;
 
 	public String getTxtDate() {
 		return txtDate;
@@ -240,5 +243,37 @@ public class SmartbillNewVO {
 	}
 	public void setDtiStatus(String dtiStatus) {
 		this.dtiStatus = dtiStatus;
+	}
+	public String getSignal() {
+		return signal;
+	}
+	public void setSignal(String signal) {
+		this.signal = signal;
+	}
+
+	//랜덤 4자 생성
+	public StringBuffer newWord(){
+
+		Random random = new Random();
+		int length = random.nextInt(1)+4; //
+		StringBuffer newWord = new StringBuffer();
+
+		for (int i = 0; i < length; i++) {
+			int choice = random.nextInt(3);
+			switch(choice) {
+				case 0:
+					newWord.append((char)((int)random.nextInt(25)+97));
+					break;
+				case 1:
+					newWord.append((char)((int)random.nextInt(25)+65));
+					break;
+				case 2:
+					newWord.append((char)((int)random.nextInt(10)+48));
+					break;
+				default:
+					break;
+			}
+		}
+		return newWord;
 	}
 }

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.smartbillNew">
+
+	<resultMap id="view" type="com.board.domain.SmartbillNewVO">
+		<result property="txtSupComRegNo" column="SUP_COM_REGNO" />
+		<result property="txtByrComRegNo" column="BYR_COM_REGNO" />
+		<result property="txtSupComName" column="SUP_COM_NAME" />
+		<result property="txtSupComRepName" column="SUP_REP_NAME" />
+		<result property="txtByrComName" column="BYR_COM_NAME" />
+		<result property="txtByrComRepName" column="BYR_REP_NAME" />
+		<result property="txtSupComAddr" column="SUP_COM_ADDR" />
+		<result property="txtByrComAddr" column="BYR_COM_ADDR" />
+		<result property="txtSupBizType" column="SUP_COM_TYPE" />
+		<result property="txtSupClassify" column="SUP_COM_CLASSIFY" />
+		<result property="txtByrBizType" column="BYR_COM_TYPE" />
+		<result property="txtByrClassify" column="BYR_COM_CLASSIFY" />
+		<result property="txtSupDeptPerson" column="SUP_EMP_NAME" />
+		<result property="txtSupDeptTel" column="SUP_TEL_NUM" />
+		<result property="txtByrDeptPerson" column="BYR_EMP_NAME" />
+		<result property="txtByrDeptTel" column="BYR_TEL_NUM" />
+		<result property="txtSupDeptEmail" column="SUP_EMAIL" />
+		<result property="txtSupDeptName" column="SUP_DEPT_NAME" />
+		<result property="txtByrDeptEmail" column="BYR_EMAIL" />
+		<result property="txtByrDeptName" column="BYR_DEPT_NAME" />
+		<result property="txtBigo" column="REMARK" />
+		<result property="txtDate" column="DTI_WDATE" />
+		<result property="txtSupAmount" column="SUP_AMOUNT" />
+		<result property="txtTaxAmount" column="TAX_AMOUNT" />
+		<result property="txtTotalAmount" column="TOTAL_AMOUNT" />
+		<result property="conversationId" column="CONVERSATION_ID" />
+		<result property="txtSupbuy_type" column="SUPBUY_TYPE" />
+        <result property="dtiStatus" column="SUPBUY_TYPE" />
+        <result property="txtDirection" column="DIRECTION" />
+	</resultMap>
+
+    <resultMap id="status" type="com.board.domain.SmartbillNewVO">
+        <result property="dtiStatus" column="dti_status" />
+    </resultMap>
+
+	<resultMap id="certList" type="com.board.domain.SmartbillOldCertVO">
+		<result property="certRegno" column="CERT_REGNO" />
+		<result property="certComName" column="CERT_COMNAME" />
+		<result property="userDn" column="USERDN" />
+		<result property="expirationDate" column="EXPIRATION_DATE" />
+	</resultMap>
+
+    <!-- 게시물 작성 -->
+	<insert id="arissue"
+		parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_MAIN
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_WDATE,
+		DTI_TYPE,
+		TAX_DEMAND,
+		SUP_COM_REGNO,
+		SUP_REP_NAME,
+		SUP_COM_ID,
+		SUP_COM_NAME,
+		SUP_COM_TYPE,
+		SUP_COM_CLASSIFY,
+		SUP_COM_ADDR,
+		SUP_DEPT_NAME,
+		SUP_EMP_NAME,
+		SUP_TEL_NUM,
+		SUP_EMAIL,
+		BYR_COM_REGNO,
+		BYR_REP_NAME,
+		BYR_COM_NAME,
+		BYR_COM_TYPE,
+		BYR_COM_CLASSIFY,
+		BYR_COM_ADDR,
+		BYR_DEPT_NAME,
+		BYR_EMP_NAME,
+		BYR_TEL_NUM,
+		BYR_EMAIL,
+		SUP_AMOUNT,
+		TAX_AMOUNT,
+		TOTAL_AMOUNT,
+		CREATION_DATE,
+		LAST_UPDATE_DATE,
+		DTT_YN)
+		VALUES(#{conversationId},
+		#{txtSupbuy_type},
+		#{txtDirection},
+		#{txtDate},
+		'0101',
+		'01',
+		#{txtSupComRegNo},
+		#{txtSupComRepName},
+		'testtest',
+		#{txtSupComName},
+		#{txtSupBizType},
+		#{txtSupClassify},
+		'주소',
+		#{txtSupDeptName},
+		#{txtSupDeptPerson},
+		#{txtSupDeptTel},
+		#{txtSupDeptEmail},
+		#{txtByrComRegNo},
+		#{txtByrComRepName},
+		#{txtByrComName},
+		#{txtByrBizType},
+		#{txtByrClassify},
+		'공급받는주소',
+		#{txtByrDeptName},
+		#{txtByrDeptPerson},
+		#{txtByrDeptTel},
+		#{txtByrDeptEmail},
+		#{txtSupAmount},
+		#{txtTaxAmount},
+		#{txtTotalAmount},
+		sysdate,
+		sysdate,
+	<choose>
+		<when test="dtiGubun == 'DTT'">'Y'</when>
+		<otherwise>'N'</otherwise>
+	</choose>
+	)
+	</insert>
+
+	<!--  세금계산서 Item inert -->
+	<insert id="arissueItem" parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_ITEM
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_LINE_NUM,
+		SUP_AMOUNT,
+		TAX_AMOUNT,
+		ITEM_GUBUN,
+		CREATION_DATE,
+		LAST_UPDATE_DATE)
+		VALUES(
+		#{conversationId},
+		#{txtSupbuy_type},
+		#{txtDirection},
+		'1',
+		#{txtSupAmount},
+		#{txtTaxAmount},
+		#{dtiGubun},
+		sysdate,
+		sysdate)
+	</insert>
+
+	<!--  거래명세서 Item inert -->
+		<insert id="arissueItemDTT" parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_ITEM
+		(CONVERSATION_ID,
+		 SUPBUY_TYPE,
+		 DIRECTION,
+		 DTI_LINE_NUM,
+		 SUP_AMOUNT,
+		 TAX_AMOUNT,
+		 ITEM_GUBUN,
+		 CREATION_DATE,
+		 LAST_UPDATE_DATE)
+		VALUES(
+				  #{conversationId},
+				  #{txtSupbuy_type},
+				  #{txtDirection},
+				  '2',
+				  #{txtSupAmount},
+				  #{txtTaxAmount},
+				  #{dtiGubun},
+				  sysdate,
+				  sysdate)
+	</insert>
+
+	<insert id="arissueStatus" parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_STATUS
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_STATUS,
+		CREATION_DATE,
+		LAST_UPDATE_DATE)
+		VALUES(
+		#{conversationId},
+		#{txtSupbuy_type},
+		#{txtDirection},
+		'S',
+		sysdate,
+		sysdate)
+	</insert>
+
+	<!-- Insertface Insert> -->
+	<insert id="interface" parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_INTERFACE (
+			MESSAGE_ID,
+		    CONVERSATION_ID,
+		    SUPBUY_TYPE,
+		    DIRECTION,
+		    SIGNAL,
+		    MESSAGE_STATUS_FLAG,
+		    AUTH_TICKET,
+		    LAST_UPDATE_DATE
+		    ) VALUES (
+		    #{messageid},
+		    #{conversationId},
+			#{txtSupbuy_type},
+		    #{txtDirection},
+		    #{signal},
+		    'N',
+			#{txtSupDeptEmail},
+		    SYSDATE)
+	</insert>
+
+	<!-- 역매입 요청 Main insert-->
+	<!-- 2022-02-16 현재 사용안함. arissue에 통합 -->
+	<insert id="issue" parameterType="com.board.domain.SmartbillNewVO">
+		INSERT INTO XXSB_DTI_MAIN
+		(CONVERSATION_ID,
+		SUPBUY_TYPE,
+		DIRECTION,
+		DTI_WDATE,
+		DTI_TYPE,
+		TAX_DEMAND,
+		SUP_COM_REGNO,
+		SUP_REP_NAME,
+		SUP_COM_ID,
+		SUP_COM_NAME,
+		SUP_COM_TYPE,
+		SUP_COM_CLASSIFY,
+		SUP_COM_ADDR,
+		SUP_DEPT_NAME,
+		SUP_EMP_NAME,
+		SUP_TEL_NUM,
+		SUP_EMAIL,
+		BYR_COM_REGNO,
+		BYR_REP_NAME,
+		BYR_COM_NAME,
+		BYR_COM_TYPE,
+		BYR_COM_CLASSIFY,
+		BYR_COM_ADDR,
+		BYR_DEPT_NAME,
+		BYR_EMP_NAME,
+		BYR_TEL_NUM,
+		BYR_EMAIL,
+		SUP_AMOUNT,
+		TAX_AMOUNT,
+		TOTAL_AMOUNT,
+		CREATION_DATE,
+		LAST_UPDATE_DATE,
+		INTERFACE_BATCH_ID)
+		VALUES(#{conversationId},
+		'AP',
+		'1',
+		#{txtDate},
+		'0101',
+		'01',
+		#{txtSupComRegNo},
+		#{txtSupComRepName},
+		'testtest',
+		#{txtSupComName},
+		#{txtSupBizType},
+		#{txtSupClassify},
+		'주소',
+		#{txtSupDeptName},
+		#{txtSupDeptPerson},
+		#{txtSupDeptTel},
+		#{txtSupDeptEmail},
+		#{txtByrComRegNo},
+		#{txtByrComRepName},
+		#{txtByrComName},
+		#{txtByrBizType},
+		#{txtByrClassify},
+		'공급받는주소',
+		#{txtByrDeptName},
+		#{txtByrDeptPerson},
+		#{txtByrDeptTel},
+		#{txtByrDeptEmail},
+		#{txtSupAmount},
+		#{txtTaxAmount},
+		#{txtTotalAmount},
+		sysdate,
+		sysdate,
+		#{txtBatchId}
+		)
+	</insert>
+
+	<!-- 보관함 리스트 조회 -->
+	<select id="list" resultType="com.board.domain.SmartbillNewVO">
+		<![CDATA[
+		SELECT A.CONVERSATION_ID as conversationId, A.APPROVE_ID as issueId, A.SUP_COM_REGNO as txtSupComRegNo, A.BYR_COM_REGNO as txtByrComRegNo, A.DTI_WDATE as txtDate, A.SUPBUY_TYPE as txtSupbuy_type, B.DIRECTION as txtDirection, B.DTI_STATUS as dtiStatus, B.RETURN_CODE as returnCode
+		FROM XXSB_DTI_MAIN A, XXSB_DTI_STATUS B
+		WHERE A.CONVERSATION_ID=B.CONVERSATION_ID
+		AND ROWNUM <= 100
+		ORDER BY A.DTI_WDATE DESC
+		]]>
+	</select>
+
+	<!-- 보관함 상세조회-->
+	<select id="view" resultMap="view">
+		select * from xxsb_dti_main
+		where conversation_id=#{conversationId}
+	</select>
+
+    <select id="status" resultMap="status">
+        select * from xxsb_dti_status
+        where conversation_id=#{conversationId}
+    </select>
+
+	<!-- 세금계산서 상태변경 -->
+	<update id="statusChange"  parameterType="com.board.domain.SmartbillNewVO">
+		update XXSB_DTI_MAIN
+			set interface_batch_id = #{txtBatchId}
+		where conversation_id = #{conversationId}
+	</update>
+
+	<!-- 인증서 리스트 조회-->
+	<select id="certList" resultMap="certList">
+		select * from xxsb_dti_cert
+	</select>
+
+</mapper>
