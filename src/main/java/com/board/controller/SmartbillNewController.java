@@ -24,7 +24,7 @@ public class SmartbillNewController {
      * 세금계산서 정발행
      */
     @RequestMapping(value = "/smartbillNewArissue", method = RequestMethod.GET)
-    public String viewsSmartbillNew(){
+    public String SmartbillNew(){
         return "/smartbillNew/smartbillNewArissue";
     }
 
@@ -34,12 +34,30 @@ public class SmartbillNewController {
         // 작성일자의 특수문자 제거
         String wdate = smartbillNewVO.getTxtDate().replaceAll("[^0-9]", "");
 
-        logger.info(wdate);
-        logger.info(smartbillNewVO.getTxtDate());
-
         service_new.arissue(smartbillNewVO);
 
         return "redirect:/";
+    }
+
+    /*
+     * 세금계산서(거래명세서 포함) 발행
+     */
+
+    @RequestMapping(value = "/smartbillNewArissueDtt", method = RequestMethod.GET)
+    public String SmartbillNewArissueDtt(){
+        return "/smartbillNew/smartbillNewArissueDtt";
+    }
+
+    @RequestMapping(value = "/smartbillNewArissueDttPost", method = RequestMethod.POST)
+    public String smartbillNewArissueDttPost(SmartbillNewVO smartbillNewVO) throws Exception{
+
+        // 작성일자의 특수문자 제거
+        String wdate = smartbillNewVO.getTxtDate().replaceAll("[^0-9]", "");
+
+        service_new.arissueDtt(smartbillNewVO);
+
+        return "redirect:/";
+
     }
 
 }

@@ -37,4 +37,22 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 		dao_new.arissue(smartbillNewVO);
 	}
 
+	@Override
+	public void arissueDtt(SmartbillNewVO smartbillNewVO) throws Exception{
+
+		StringBuffer newWord = new SmartbillNewVO().newWord();
+
+		String Conversation_id = smartbillNewVO.getTxtSupComRegNo() + smartbillNewVO.getTxtByrComRegNo() + smartbillNewVO.getTxtDate() + newWord + "003";
+		String Message_id = "Smartbill-Nonsap-" + Batchid + newWord;
+
+		smartbillNewVO.setConversationId(Conversation_id);
+		smartbillNewVO.setMessageid(Message_id);
+		smartbillNewVO.setDtiGubun("DTT");
+		smartbillNewVO.setTxtSupbuy_type("AR");
+		smartbillNewVO.setTxtDirection("2");
+		smartbillNewVO.setSignal("DETAILARISSUE");
+
+		dao_new.arissueDtt(smartbillNewVO);
+	}
+
 }
