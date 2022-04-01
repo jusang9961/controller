@@ -8,4 +8,5 @@ public interface SmartbillNewService {
 	public void arissueDtt(SmartbillNewVO smartbillNewVO) throws Exception;
 	public void issue(SmartbillNewVO smartbillNewVO) throws  Exception;
 
+	test
 }
