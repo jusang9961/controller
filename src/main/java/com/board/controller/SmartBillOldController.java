@@ -110,14 +110,14 @@ public class SmartBillOldController {
 			service.arissue(smartbillOldvo);
 
 			// 세금계산서 발행 호출
-			try {
+			/*try {
 				URL obj = new URL("http://192.168.100.118:10001/CALLSB_V3/XXSB_DTI_ARISSUE.ASP?BATCH_ID=" + smartbillOldvo.getTxtBatchId() + "&ID=29TEST&PASS=TEST");
 				HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 				con.setRequestMethod("GET");
 				in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 			} catch(Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		} else {
 			System.out.println("세션이 존재하지 않습니다. 로그인 해주세요");
 			System.out.println("###################################");
