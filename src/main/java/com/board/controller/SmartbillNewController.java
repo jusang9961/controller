@@ -60,4 +60,24 @@ public class SmartbillNewController {
 
     }
 
+    /*
+     * 세금계산서 역매입 요청
+     */
+    @RequestMapping(value = "/smartbillNewIssue", method = RequestMethod.GET)
+    public String SmartbillNewIssue(){
+        return "/smartbillNew/smartbillNewIssue";
+    }
+
+    @RequestMapping(value = "/smartbillNewIssuePost", method = RequestMethod.POST)
+    public String smartbillNewIssuePost(SmartbillNewVO smartbillNewVO) throws Exception{
+
+        // 작성일자의 특수문자 제거
+        String wdate = smartbillNewVO.getTxtDate().replaceAll("[^0-9]", "");
+
+        service_new.issue(smartbillNewVO);
+
+        return "redirect:/";
+    }
+
+
 }

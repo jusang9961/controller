@@ -90,7 +90,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/smartbillNew/smartbillNewArissue">정매출 발행</a></li>
 							<li><a href="/smartbillNew/smartbillNewArissueDtt">정매출(거래명세서 포함) 발행</a></li>
-							<li><a href="/BBS/jsp/smartbillNew/smartbillNewReceive.jsp">역매입 요청</a></li>
+							<li><a href="/smartbillNew/smartbillNewIssue">역매입 요청</a></li>
 							<li><a href="/BBS/jsp/smartbillNew/smartbillNewReceive.jsp">역매입 요청(거래명)</a></li>
 							<li><a href="/BBS/jsp/smartbillNew/smartbillNewDTT_xml.jsp">정매출 거래명세서(xml 파싱)</a></li>
 						</ul></li>

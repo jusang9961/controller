@@ -64,6 +64,7 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 		String Message_id = "Smartbill-Nonsap-" + Batchid + newWord;
 
 		smartbillNewVO.setConversationId(Conversation_id);
+		smartbillNewVO.setMessageid(Message_id);
 		smartbillNewVO.setDtiGubun("DTI");
 		smartbillNewVO.setTxtSupbuy_type("AP");
 		smartbillNewVO.setTxtDirection("1");

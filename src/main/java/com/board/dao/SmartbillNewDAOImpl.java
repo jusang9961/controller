@@ -56,9 +56,9 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 	 * 역매입 요청
 	 */
 	@Override
-	public void issue(SmartbillNewVO smartbillNewVO) throws Exception {
+	public void issue(SmartbillNewVO smartbillNewVO) {
 
-		sql_new.insert(namespace + ".issue", smartbillNewVO);
+		sql_new.insert(namespace + ".arissue", smartbillNewVO);
 		sql_new.insert(namespace + ".arissueItem", smartbillNewVO);
 		sql_new.insert(namespace + ".arissueStatus", smartbillNewVO);
 		sql_new.insert(namespace + ".interface", smartbillNewVO);
