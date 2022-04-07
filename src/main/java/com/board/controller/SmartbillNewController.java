@@ -98,5 +98,12 @@ public class SmartbillNewController {
         return "redirect:/";
     }
 
+    /*
+     * 세금계산서 Xml Upload
+     */
+    @RequestMapping(value = "/smartbillNewXmlUpload", method = RequestMethod.GET)
+    public String SmartbillNewXmlUpload(){
+        return "smartbillNew/smartbillNewXmlUpload";
+    }
 
 }
