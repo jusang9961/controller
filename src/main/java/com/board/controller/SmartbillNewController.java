@@ -79,5 +79,24 @@ public class SmartbillNewController {
         return "redirect:/";
     }
 
+    /*
+     * 세금계산서 역매입 요청(거래명세서 포함)
+     */
+    @RequestMapping(value = "/smartbillNewIssueDtt", method = RequestMethod.GET)
+    public String SmartbillNewIssueDtt(){
+        return "smartbillNew/smartbillNewIssueDtt";
+    }
+
+    @RequestMapping(value = "/smartbillNewIssueDttPost", method = RequestMethod.POST)
+    public String smartbillNewIssueDttPost(SmartbillNewVO smartbillNewVO) throws Exception{
+
+        // 작성일자의 특수문자 제거
+        String wdate = smartbillNewVO.getTxtDate().replaceAll("[^0-9]", "");
+
+        service_new.issueDtt(smartbillNewVO);
+
+        return "redirect:/";
+    }
+
 
 }

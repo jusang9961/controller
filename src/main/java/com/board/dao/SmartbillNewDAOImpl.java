@@ -64,4 +64,21 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 		sql_new.insert(namespace + ".interface", smartbillNewVO);
 	}
 
+	/*
+	 * 역매입(거래명세서 포함) 요청
+	 */
+	@Override
+	public void issueDtt(SmartbillNewVO smartbillNewVO) {
+
+		sql_new.insert(namespace + ".arissue", smartbillNewVO);
+		sql_new.insert(namespace + ".arissueItem", smartbillNewVO);
+		sql_new.insert(namespace + ".arissueStatus", smartbillNewVO);
+		sql_new.insert(namespace + ".interface", smartbillNewVO);
+
+		// DTT item insert
+		smartbillNewVO.setDtiGubun("DTT");
+		sql_new.insert(namespace + ".arissueItemDTT", smartbillNewVO);
+	}
+
+
 }
