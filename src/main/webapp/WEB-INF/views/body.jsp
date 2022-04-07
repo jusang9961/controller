@@ -49,7 +49,7 @@
 
 		</button>
 
-		<a class="navbar-brand" href="main.jsp">SmartBill Test</a>
+		<a class="navbar-brand" href="/">SmartBill Test</a>
 		<!-- Bootstrap navbar 기본 메뉴바 -->
 	</div>
 
