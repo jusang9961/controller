@@ -68,7 +68,7 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 		smartbillNewVO.setDtiGubun("DTI");
 		smartbillNewVO.setTxtSupbuy_type("AP");
 		smartbillNewVO.setTxtDirection("1");
-		smartbillNewVO.setSignal("ISSUE");
+		smartbillNewVO.setSignal("RARREQUEST");
 
 		dao_new.issue(smartbillNewVO);
 	}
@@ -86,7 +86,7 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 		smartbillNewVO.setDtiGubun("DTI");
 		smartbillNewVO.setTxtSupbuy_type("AP");
 		smartbillNewVO.setTxtDirection("1");
-		smartbillNewVO.setSignal("ISSUE");
+		smartbillNewVO.setSignal("RARREQUEST");
 
 		dao_new.issueDtt(smartbillNewVO);
 	}

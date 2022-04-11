@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/smartbillNew/*")
@@ -104,6 +106,23 @@ public class SmartbillNewController {
     @RequestMapping(value = "/smartbillNewXmlUpload", method = RequestMethod.GET)
     public String SmartbillNewXmlUpload(){
         return "smartbillNew/smartbillNewXmlUpload";
+    }
+
+    /*
+     * 인증서 등록
+     */
+    @RequestMapping(value = "/smartbillNewCert", method = RequestMethod.GET)
+    public String SmartbillNewCert(){
+        return "smartbillNew/smartbillNewCert";
+    }
+
+    /*
+     * SBMS Admin 호출
+     */
+    @RequestMapping(value = "/SmartbillNewMonitor", method = RequestMethod.GET)
+    public void SmartbillNewMonitor(HttpServletResponse httpServletResponse) throws IOException {
+        httpServletResponse.sendRedirect("http://localhost:30000/dti");
+        //return "redirect:http://localhost:30000/dti";
     }
 
 }

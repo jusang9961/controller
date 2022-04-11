@@ -95,8 +95,8 @@
 						</ul></li>
 					<li><a href="/BBS/jsp/smartbillNew/smartbillNewList.jsp">전자(세금)게산서 조회</a></li>
 					<li><a href="/smartbillNew/smartbillNewXmlUpload">Xml 업로드</a></li>
-					<li><a href="/BBS/jsp/smartbillNew/smartbillNewCert.jsp">인증서 등록</a></li>
-					<li><a href="http://localhost:30000/dti/">SBMS 모니터링</a></li>
+					<li><a href="/smartbillNew/smartbillNewCert">인증서 등록</a></li>
+					<li><a href="/smartbillNew/SmartbillNewMonitor">SBMS 모니터링</a></li>
 
 				</ul></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
