@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SmartbillNewServiceImpl implements SmartbillNewService {
@@ -90,4 +91,14 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 
 		dao_new.issueDtt(smartbillNewVO);
 	}
+
+	/*
+	 * 세금계산서 보관함
+	 */
+	@Override
+	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception{
+
+		return dao_new.list(smartbillNewVO);
+	}
+
 }

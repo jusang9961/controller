@@ -1,6 +1,7 @@
 package com.board.dao;
 
 import com.board.domain.SmartbillNewVO;
+import java.util.List;
 
 public interface SmartbillNewDAO {
 
@@ -8,5 +9,5 @@ public interface SmartbillNewDAO {
 	public void arissueDtt(SmartbillNewVO smartbillNewVO) throws Exception;
 	public void issue(SmartbillNewVO smartbillNewVO) throws  Exception;
 	public void issueDtt(SmartbillNewVO smartbillNewVO) throws  Exception;
-
+	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception;
 }

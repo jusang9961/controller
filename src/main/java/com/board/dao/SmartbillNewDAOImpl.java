@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class SmartbillNewDAOImpl implements SmartbillNewDAO {
@@ -80,5 +81,15 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 		sql_new.insert(namespace + ".arissueItemDTT", smartbillNewVO);
 	}
 
+	/*
+	 * 세금계산서 보관함 조회
+	 */
+	@Override
+	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception{
+
+		logger.info("차세대 세금계산서 보관함(리스트) 조회");
+
+		return sql_new.selectList(namespace + ".list", smartbillNewVO);
+	}
 
 }

@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- head 파일 -->
+	<%@ include file="/WEB-INF/views/head.jsp" %>
+</head>
+<!-- <body style= "background-color : lightblue;"> -->
+<body>
+<!-- body 파일 -->
+<%@ include file="/WEB-INF/views/body.jsp" %>
+
+<div class="container">
+	<div class="row">
+		<form method="post" >
+			<table class="table table-striped"
+			style="text-align: center; border: 1px solid #dddddd">
+			<!-- <table class="table" style="text-align:center; border: 4px; border-style:double; border-width: thick;"> -->
+			<thead>
+				<tr>
+					<th colspan="22"
+						style="background-color: #FF0000; color: white; text-align: center;">차세대 전자(세금)계산서 보관함</th>
+					</tr>
+				<tr>
+					<!--  <th style="background-color: #4CAF50; color : blue;text-align:center; font-style: italic;
+							   font-size: 25px; font-weight: bold;">번호</th>-->
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">참조번호</th>
+
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">국세청 승인번호</th>
+
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">공급자<br>사업자번호</th>
+
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">공급받는자<br>사업자번호</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">작성일</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">문서상태</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">정/역</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">매출/매입</th>
+					<th
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">결과코드</th>
+				</tr>
+				</thead>
+			<tbody>
+
+			<c:forEach items="${list}" var="list">
+				<tr>
+					<td style='vertical-align: middle;'>
+						<a href="/smartbillNew/smartbillNewview?conversationId=${list.conversationId}">${list.conversationId}</a>
+					</td>
+					<td style='vertical-align: middle;'>${list.issueId}</td>
+					<td style='vertical-align: middle;'>${list.txtSupComRegNo}</td>
+					<td style='vertical-align: middle;'>${list.txtByrComRegNo}</td>
+					<td style='vertical-align: middle;'>${list.txtDate}</td>
+					<td style='vertical-align: middle;'>${list.dtiStatus}</td>
+
+					<c:set var="Direction" value="${list.txtDirection}" />
+					<c:if test="${Direction eq '2'}">
+						<td style='vertical-align: middle;'>정</td>
+					</c:if>
+					<c:if test="${Direction eq '1'}">
+						<td style='vertical-align: middle;'>역</td>
+					</c:if>
+					<td style='vertical-align: middle;'>${list.txtSupbuy_type}</td>
+					<td style='vertical-align: middle;'>${list.returnCode}</td>
+
+				</tr>
+			</c:forEach>
+
+			</tbody>
+		</table>
+				
+	 </form>
+	</div>
+</div>
+
+</body>
+</html>

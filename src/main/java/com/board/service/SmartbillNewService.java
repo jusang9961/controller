@@ -1,6 +1,7 @@
 package com.board.service;
 
 import com.board.domain.SmartbillNewVO;
+import java.util.List;
 
 public interface SmartbillNewService {
 
@@ -8,6 +9,6 @@ public interface SmartbillNewService {
 	public void arissueDtt(SmartbillNewVO smartbillNewVO) throws Exception;
 	public void issue(SmartbillNewVO smartbillNewVO) throws  Exception;
 	public void issueDtt(SmartbillNewVO smartbillNewVO) throws  Exception;
-
+	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception;
 
 }
