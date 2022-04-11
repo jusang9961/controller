@@ -28,50 +28,50 @@
 					<!--  <th style="background-color: #4CAF50; color : blue;text-align:center; font-style: italic;
 							   font-size: 25px; font-weight: bold;">번호</th>-->
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">Conversation_id</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">참조번호</th>
 
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">Issue_id</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">국세청 승인번호</th>
 
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">공급자 사업자번호</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">공급자<br>사업자번호</th>
 
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">공급받는자 사업자번호</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">공급받는자<br>사업자번호</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">작성일</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">작성일</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">문서상태</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">문서상태</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">정/역</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">정/역</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">매출/매입</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">매출/매입</th>
 					<th
-						style="background-color: #ebedef; text-align: center; font-weight: bold;">Return_code</th>
+						style="background-color: #ebedef; text-align: center; font-weight: bold; vertical-align: middle;">결과코드</th>
 				</tr>
 				</thead>
 			<tbody>
 
 			<c:forEach items="${list}" var="list">
 				<tr>
-					<td>
+					<td style='vertical-align: middle;'>
 						<a href="/smartbillOld/smartbillOldview?conversationId=${list.conversationId}">${list.conversationId}</a>
 					</td>
-					<td>${list.issueId}</td>
-					<td>${list.txtSupComRegNo}</td>
-					<td>${list.txtByrComRegNo}</td>
-					<td>${list.txtDate}</td>
-					<td>${list.dtiStatus}</td>
+					<td style='vertical-align: middle;'>${list.issueId}</td>
+					<td style='vertical-align: middle;'>${list.txtSupComRegNo}</td>
+					<td style='vertical-align: middle;'>${list.txtByrComRegNo}</td>
+					<td style='vertical-align: middle;'>${list.txtDate}</td>
+					<td style='vertical-align: middle;'>${list.dtiStatus}</td>
 
 					<c:set var="Direction" value="${list.txtDirection}" />
 					<c:if test="${Direction eq '2'}">
-						<td>정</td>
+						<td style='vertical-align: middle;'>정</td>
 					</c:if>
 					<c:if test="${Direction eq '1'}">
-						<td>역</td>
+						<td style='vertical-align: middle;'>역</td>
 					</c:if>
-					<td>${list.txtSupbuy_type}</td>
-					<td>${list.returnCode}</td>
+					<td style='vertical-align: middle;'>${list.txtSupbuy_type}</td>
+					<td style='vertical-align: middle;'>${list.returnCode}</td>
 
 				</tr>
 			</c:forEach>
