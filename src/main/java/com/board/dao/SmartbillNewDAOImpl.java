@@ -85,11 +85,11 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 	 * 세금계산서 보관함 조회
 	 */
 	@Override
-	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception{
+	public List<SmartbillNewVO> ArList(SmartbillNewVO smartbillNewVO) throws Exception{
 
 		logger.info("차세대 세금계산서 보관함(리스트) 조회");
 
-		return sql_new.selectList(namespace + ".list", smartbillNewVO);
+		return sql_new.selectList(namespace + ".ArList", smartbillNewVO);
 	}
 
 }

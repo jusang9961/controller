@@ -284,13 +284,13 @@
 	</insert>
 
 	<!-- 보관함 리스트 조회 -->
-	<select id="list" resultType="com.board.domain.SmartbillNewVO">
+	<select id="ArList" resultType="com.board.domain.SmartbillNewVO">
 		<![CDATA[
-		SELECT A.CONVERSATION_ID as conversationId, A.APPROVE_ID as issueId, A.SUP_COM_REGNO as txtSupComRegNo, A.BYR_COM_REGNO as txtByrComRegNo, A.DTI_WDATE as txtDate, A.SUPBUY_TYPE as txtSupbuy_type, B.DIRECTION as txtDirection, B.DTI_STATUS as dtiStatus, B.RETURN_CODE as returnCode
-		FROM XXSB_DTI_MAIN A, XXSB_DTI_STATUS B
-		WHERE A.CONVERSATION_ID=B.CONVERSATION_ID
-		AND ROWNUM <= 100
-		ORDER BY A.DTI_WDATE DESC
+		SELECT A.CONVERSATION_ID as conversationId, A.APPROVE_ID as issueId, A.SUP_COM_REGNO as txtSupComRegNo, A.BYR_COM_REGNO as txtByrComRegNo, A.DTI_WDATE as txtDate, A.SUPBUY_TYPE as txtSupbuy_type,
+		       B.DIRECTION as txtDirection, B.DTI_STATUS as dtiStatus, B.RETURN_CODE as returnCode
+		FROM XXSB_DTI_MAIN A
+		  INNER JOIN XXSB_DTI_STATUS B ON (A.SUPBUY_TYPE=#{txtSupbuy_type} AND B.SUPBUY_TYPE=#{txtSupbuy_type} AND A.CONVERSATION_ID=B.CONVERSATION_ID)
+		AND ROWNUM <= 100 ORDER BY A.DTI_WDATE DESC
 		]]>
 	</select>
 

@@ -93,7 +93,13 @@
 							<li><a href="/smartbillNew/smartbillNewIssueDtt">역매입(거래명세서 포함) 요청</a></li>
 							<li><a href="/BBS/jsp/smartbillNew/smartbillNewDTT_xml.jsp">정매출 거래명세서(xml 파싱)</a></li>
 						</ul></li>
-					<li><a href="/smartbillNew/smartbillNewList">전자(세금)게산서 조회</a></li>
+					<li class="dropdown-submenu"><a tabindex="-1" href="#">전자(세금)계산서
+						보관함<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/smartbillNew/smartbillNewArList">매출 보관함</a></li>
+							<li><a href="/smartbillNew/smartbillNewApList">매입 보관함</a></li>
+						</ul></li>
 					<li><a href="/smartbillNew/smartbillNewXmlUpload">Xml 업로드</a></li>
 					<li><a href="/smartbillNew/smartbillNewCert">인증서 등록</a></li>
 					<li><a href="/smartbillNew/smartbillNewMonitor">SBMS 모니터링</a></li>

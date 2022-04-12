@@ -128,20 +128,36 @@ public class SmartbillNewController {
     }
 
     /*
-     * 보관함(리스트) 조회
+     * 매출 보관함(리스트) 조회
      */
-    @RequestMapping(value="/smartbillNewList", method = RequestMethod.GET)
-    public String SmartbillNewList(SmartbillNewVO smartbillNewVO, Model model) throws Exception {
+    @RequestMapping(value="/smartbillNewArList", method = RequestMethod.GET)
+    public String SmartbillNewArList(SmartbillNewVO smartbillNewVO, Model model) throws Exception {
 
         logger.info("#################################### 리스트조회 시작 #########################");
+        smartbillNewVO.setTxtSupbuy_type("AR");
 
-        List<SmartbillNewVO> list = service_new.list(smartbillNewVO);
-        logger.info("##################################################" + list.get(0).getReturnCode());
-        logger.info("##################################################" + list.get(0).getConversationId());
+        List<SmartbillNewVO> ArList = service_new.ArList(smartbillNewVO);
+        //logger.info("##################################################" + ArList.get(0).getReturnCode());
+        //logger.info("##################################################" + ArList.get(0).getConversationId());
 
-        model.addAttribute("list", list);
+        model.addAttribute("list", ArList);
 
-        return "/smartbillNew/smartbillNewList";
+        return "/smartbillNew/smartbillNewArList";
+    }
+
+    /*
+     * 매입 보관함(리스트) 조회
+     */
+    @RequestMapping(value="/smartbillNewApList", method = RequestMethod.GET)
+    public String SmartbillNewApList(SmartbillNewVO smartbillNewVO, Model model) throws Exception {
+
+        logger.info("#################################### 리스트조회 시작 #########################");
+        smartbillNewVO.setTxtSupbuy_type("AP");
+
+        List<SmartbillNewVO> ArList = service_new.ArList(smartbillNewVO);
+        model.addAttribute("list", ArList);
+
+        return "smartbillNew/smartbillNewApList";
     }
 
 }

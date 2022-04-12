@@ -9,6 +9,6 @@ public interface SmartbillNewService {
 	public void arissueDtt(SmartbillNewVO smartbillNewVO) throws Exception;
 	public void issue(SmartbillNewVO smartbillNewVO) throws  Exception;
 	public void issueDtt(SmartbillNewVO smartbillNewVO) throws  Exception;
-	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception;
+	public List<SmartbillNewVO> ArList(SmartbillNewVO smartbillNewVO) throws Exception;
 
 }

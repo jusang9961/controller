@@ -96,9 +96,9 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 	 * 세금계산서 보관함
 	 */
 	@Override
-	public List<SmartbillNewVO> list(SmartbillNewVO smartbillNewVO) throws Exception{
+	public List<SmartbillNewVO> ArList(SmartbillNewVO smartbillNewVO) throws Exception{
 
-		return dao_new.list(smartbillNewVO);
+		return dao_new.ArList(smartbillNewVO);
 	}
 
 }
