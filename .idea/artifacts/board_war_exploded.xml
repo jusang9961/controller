@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="board:war exploded">
-    <output-path>$PROJECT_DIR$/classes/artifacts/board_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/target/controller-1.0.0-BUILD-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>board</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -45,13 +52,10 @@
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-template:3.0.5" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-autotag-core-runtime:1.1.0" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.6" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring3:Release" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring3:Release1" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:Release" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:Release1" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:Release1" />
-          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:Release2" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/controller-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="board/web/Web" />
     </root>

@@ -8,11 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/smartbillNew/*")
@@ -152,12 +156,47 @@ public class SmartbillNewController {
     public String SmartbillNewApList(SmartbillNewVO smartbillNewVO, Model model) throws Exception {
 
         logger.info("#################################### 리스트조회 시작 #########################");
+        smartbillNewVO.setDtiStatus("3");
         smartbillNewVO.setTxtSupbuy_type("AP");
 
         List<SmartbillNewVO> ArList = service_new.ArList(smartbillNewVO);
         model.addAttribute("list", ArList);
 
         return "smartbillNew/smartbillNewApList";
+    }
+
+    /*
+     * ajax 테스트
+     */
+    @RequestMapping(value="/ajaxTest", method = RequestMethod.POST)
+    @ResponseBody
+    public String ajaxTest(SmartbillNewVO smartbillNewVO, Model model) throws Exception{
+
+        smartbillNewVO.setTxtSupbuy_type("AP");
+
+        List<SmartbillNewVO> ArList = service_new.ArList(smartbillNewVO);
+        logger.info("##################List mapper 조회 후###################");
+
+        model.addAttribute("list", ArList);
+        logger.info("#####################################" + smartbillNewVO.getDtiStatus());
+        //logger.info("##################################################" + ArList.get(0).getReturnCode());
+        //logger.info("##################################################" + ArList.get(0).getConversationId());
+
+        return smartbillNewVO.getConversationId() + smartbillNewVO.getIssueId();
+        //return  null;
+    }
+
+    /*
+     * 전자(세금)계산서 view 호출
+     */
+    @RequestMapping(value="/smartbillNew/smartbillNewview", method = RequestMethod.GET)
+    public void smartbillNewview(@RequestParam("conversationId") String conversationid, @RequestParam("txtSupbuy_type") String supbuy_type, Model model) throws Exception {
+
+        SmartbillNewVO smartbillNewVO = service_new.view(conversationid);
+        SmartbillNewVO smartbillNewVO1 = service_new.status(conversationid);
+
+        model.addAttribute("view", smartbillNewVO);
+        model.addAttribute("status", smartbillNewVO1);
     }
 
 }

@@ -285,24 +285,31 @@
 
 	<!-- 보관함 리스트 조회 -->
 	<select id="ArList" resultType="com.board.domain.SmartbillNewVO">
-		<![CDATA[
 		SELECT A.CONVERSATION_ID as conversationId, A.APPROVE_ID as issueId, A.SUP_COM_REGNO as txtSupComRegNo, A.BYR_COM_REGNO as txtByrComRegNo, A.DTI_WDATE as txtDate, A.SUPBUY_TYPE as txtSupbuy_type,
 		       B.DIRECTION as txtDirection, B.DTI_STATUS as dtiStatus, B.RETURN_CODE as returnCode
 		FROM XXSB_DTI_MAIN A
-		  INNER JOIN XXSB_DTI_STATUS B ON (A.SUPBUY_TYPE=#{txtSupbuy_type} AND B.SUPBUY_TYPE=#{txtSupbuy_type} AND A.CONVERSATION_ID=B.CONVERSATION_ID)
-		AND ROWNUM <= 100 ORDER BY A.DTI_WDATE DESC
-		]]>
+		  INNER JOIN XXSB_DTI_STATUS B ON (A.SUPBUY_TYPE=#{txtSupbuy_type}
+		                                     AND B.SUPBUY_TYPE=#{txtSupbuy_type}
+		                                     <choose>
+											 	<when test="dtiStatus == '3'">AND B.DTI_STATUS='I'</when>
+												 <otherwise>AND B.DTI_STATUS='C'</otherwise>
+											 </choose>
+
+		                                     AND A.CONVERSATION_ID=B.CONVERSATION_ID)
+		ORDER BY A.DTI_WDATE DESC
 	</select>
 
 	<!-- 보관함 상세조회-->
-	<select id="view" resultMap="view">
+	<select id="view" resultMap="view" parameterType="">
 		select * from xxsb_dti_main
 		where conversation_id=#{conversationId}
+		and supbuy_type=#{}
 	</select>
 
     <select id="status" resultMap="status">
         select * from xxsb_dti_status
         where conversation_id=#{conversationId}
+		and supbuy_type=#{}
     </select>
 
 	<!-- 세금계산서 상태변경 -->

@@ -88,8 +88,26 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 	public List<SmartbillNewVO> ArList(SmartbillNewVO smartbillNewVO) throws Exception{
 
 		logger.info("차세대 세금계산서 보관함(리스트) 조회");
+		logger.info("차세대 세금계산서 보관함(리스트) 조회##### " + smartbillNewVO.getDtiStatus());
+		logger.info("차세대 세금계산서 보관함(리스트) 조회##### " + smartbillNewVO);
 
 		return sql_new.selectList(namespace + ".ArList", smartbillNewVO);
+	}
+
+	/*
+	 * 세금계산서 view
+	 */
+	@Override
+	public SmartbillNewVO view(String conversationid, String supbuy_type) throws Exception{
+
+		logger.info("차세대 세금계산서 view 조회");
+		return sql_new.selectOne(namespace + ".view", SmartbillNewVO);
+	}
+
+	@Override
+	public SmartbillNewVO status(String conversationid, String supbuy_type) throws Exception{
+
+		return sql_new.selectOne(namespace + ".status", conversationid);
 	}
 
 }

@@ -60,7 +60,7 @@
 						<input type="checkbox" name="CheckBox">
 					</td>
 					<td style='vertical-align: middle;'>
-						<a href="/smartbillNew/smartbillNewview?conversationId=${list.conversationId}">${list.conversationId}</a>
+						<a href="/smartbillNew/smartbillNewview?conversationId=${list.conversationId}&supbuytype=${txtSupbuy_type}">${list.conversationId}</a>
 					</td>
 					<td style='vertical-align: middle;'>${list.issueId}</td>
 					<td style='vertical-align: middle;'>${list.txtSupComRegNo}</td>
@@ -85,13 +85,14 @@
 		</table>
 
 			<button type="button" class="btn btn-primary pull-right" id="selectBtn">세금계산서 보기</button>
-
+			<button type="button" class="btn btn-primary pull-right" id="ajaxTest">ajaxTest</button>
 		</form>
 		<!--
 		<button class="btn btn-primary pull-right" onclick="location.href='http://192.168.100.118:30000/dti/api/v1/view/stype=AR'">세금계산서 보기</button>
         -->
 	</div>
 </div>
+<script src="/js/smartbillNew.js"></script>
 <script>
     $("#selectBtn").click(function(){
 

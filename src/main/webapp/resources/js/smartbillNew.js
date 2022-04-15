@@ -38,3 +38,24 @@ function issueCheck(){
 	} else
 		return true;
 }
+
+$('#ajaxTest').click(function () {
+	alert("################## ajaxText ###################");
+	var form = {
+        dtiStatus: "I",
+	}
+	$.ajax({
+		type: "POST",
+		url: "/smartbillNew/ajaxTest/",
+		data: form,
+		success: function (data) {
+			console.log(data);
+			alert('성공');
+		}, error: function (error) { // 에러처리
+			alert('실패');
+			//console.log(form);
+        }
+	});/*.done(function (data) {
+		alert(data);
+	});*/
+});
