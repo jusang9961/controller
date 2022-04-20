@@ -290,10 +290,10 @@
 		FROM XXSB_DTI_MAIN A
 		  INNER JOIN XXSB_DTI_STATUS B ON (A.SUPBUY_TYPE=#{txtSupbuy_type}
 		                                     AND B.SUPBUY_TYPE=#{txtSupbuy_type}
-		                                     <choose>
+<!--		                                     <choose>
 											 	<when test="dtiStatus == '3'">AND B.DTI_STATUS='I'</when>
 												 <otherwise>AND B.DTI_STATUS='C'</otherwise>
-											 </choose>
+											 </choose>-->
 
 		                                     AND A.CONVERSATION_ID=B.CONVERSATION_ID)
 		ORDER BY A.DTI_WDATE DESC

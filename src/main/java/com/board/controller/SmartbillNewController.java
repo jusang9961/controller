@@ -156,7 +156,6 @@ public class SmartbillNewController {
     public String SmartbillNewApList(SmartbillNewVO smartbillNewVO, Model model) throws Exception {
 
         logger.info("#################################### 리스트조회 시작 #########################");
-        smartbillNewVO.setDtiStatus("3");
         smartbillNewVO.setTxtSupbuy_type("AP");
 
         List<SmartbillNewVO> ArList = service_new.ArList(smartbillNewVO);
