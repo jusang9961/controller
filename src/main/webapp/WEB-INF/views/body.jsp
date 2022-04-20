@@ -125,15 +125,15 @@
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">OpenAPI<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-submenu"><a tabindex="-1" href="#">OpenAPI
+					<li class="dropdown-submenu"><a tabindex="-1" href="#">전자(세금)계산서
 						발행<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPISave.jsp">정매출 저장(DTI_SAVE)</a></li>
-							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPI.jsp">정매출 발행(ARISSUE)</a></li>
-							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIReceive.jsp">역매입 요청(RARREQUEST)</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiSave">정매출 저장(DTI_SAVE)</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiArissue">정매출 발행(ARISSUE)</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiReceive">역매입 요청(RARREQUEST)</a></li>
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIReceive.jsp">역매출 발행 - 기능만 구현</a></li>
-							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">정매출 거래명세서 발행(DETAILARISSUE)</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiArissueDtt">정매출 거래명세서 발행(DETAILARISSUE)</a></li>
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">역매입 거래명세서 요청 - 미개발</a></li>
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">역매출 거래명세서 발행 - 미개발</a></li>
 						</ul>
@@ -141,7 +141,7 @@
 					<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPISearch.jsp">세금계산서 상태 조회(DTI_STATUS_LIST)</a></li>
 					<li><a href="javascript:ArApRepo()">보관함조회(ARAP_REPO) - 기능만 구현</a></li>
 					<li><a href="javascript:ViewXml()">원본 Xml 조회(VIEW_XML)</a></li>
-					<li><a href="/BBS/jsp/smartbillOpenApi/aescrypto.jsp">인증서 패스워드 암/복호화</a></li>
+					<li><a href="/smartbillOpenApi/smartbillOpenApiAescrypto">인증서 패스워드 암/복호화</a></li>
 				</ul></li>
 
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
