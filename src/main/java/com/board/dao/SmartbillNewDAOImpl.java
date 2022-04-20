@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -98,16 +100,33 @@ public class SmartbillNewDAOImpl implements SmartbillNewDAO {
 	 * 세금계산서 view
 	 */
 	@Override
-	public SmartbillNewVO view(String conversationid, String supbuy_type) throws Exception{
+	public List<SmartbillNewVO> view(String conversationid, String supbuy_type) throws Exception{
 
 		logger.info("차세대 세금계산서 view 조회");
-		return sql_new.selectOne(namespace + ".view", SmartbillNewVO);
+		HashMap<String, String> map1 = new HashMap<String, String>();
+		map1.put("conversationid", conversationid);
+		map1.put("supbuy_type", supbuy_type);
+		//List<String> view = new ArrayList<String>(){ {add(converstaionid), add(supbuy_type)}};
+
+		List<SmartbillNewVO> aaa = sql_new.selectList(namespace + ".view", map1);
+
+		logger.info("########################################################" + aaa.size());
+
+		return aaa;
 	}
 
+	/*
+	 * 세금계산서 view
+	 */
 	@Override
-	public SmartbillNewVO status(String conversationid, String supbuy_type) throws Exception{
+	public List<SmartbillNewVO> viewStatus(String conversationid, String supbuy_type) throws Exception{
 
-		return sql_new.selectOne(namespace + ".status", conversationid);
+		logger.info("차세대 세금계산서 view 조회");
+		HashMap<String, String> map1 = new HashMap<String, String>();
+		map1.put("conversationid", conversationid);
+		map1.put("supbuy_type", supbuy_type);
+
+		return sql_new.selectList(namespace + ".status", map1);
 	}
 
 }

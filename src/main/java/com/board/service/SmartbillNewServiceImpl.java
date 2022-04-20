@@ -102,25 +102,20 @@ public class SmartbillNewServiceImpl implements SmartbillNewService {
 	}
 
 	/*
-	 * 세금계산서 보관함
-	 */
-	@Override
-	public SmartbillNewVO ArList(SmartbillNewVO smartbillNewVO) throws Exception{
-
-		return dao_new.ArList(smartbillNewVO);
-	}
-
-	/*
 	 * 세금계산서 view
 	 */
 	@Override
-	public SmartbillNewVO view(String conversationid) throws Exception {
-		return dao_new.view(conversationid);
+	public List<SmartbillNewVO> view(String conversationid, String supbuy_type) throws Exception {
+		List<SmartbillNewVO> view = dao_new.view(conversationid, supbuy_type);
+		return view;
+
 	}
 
 	@Override
-	public SmartbillNewVO status(String conversationid) throws Exception {
-		return dao_new.status(conversationid);
+	public List<SmartbillNewVO> viewStatus(String conversationid, String supbuy_type) throws Exception {
+		return dao_new.viewStatus(conversationid, supbuy_type);
+
 	}
+
 
 }

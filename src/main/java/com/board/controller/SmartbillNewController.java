@@ -190,13 +190,17 @@ public class SmartbillNewController {
      * 전자(세금)계산서 view 호출
      */
     @RequestMapping(value="/smartbillNew/smartbillNewview", method = RequestMethod.GET)
-    public void smartbillNewview(@RequestParam("conversationId") String conversationid, @RequestParam("txtSupbuy_type") String supbuy_type, Model model) throws Exception {
+    public void smartbillNewview(@RequestParam("conversationId") String conversationid, @RequestParam("supbuytype") String supbuy_type, Model model) throws Exception {
 
-        SmartbillNewVO smartbillNewVO = service_new.view(conversationid);
-        SmartbillNewVO smartbillNewVO1 = service_new.status(conversationid);
+        //SmartbillNewVO smartbillNewVO = service_new.view(conversationid, supbuy_type);
 
-        model.addAttribute("view", smartbillNewVO);
-        model.addAttribute("status", smartbillNewVO1);
+        List<SmartbillNewVO> view = service_new.view(conversationid, supbuy_type);
+        List<SmartbillNewVO> viewStatus = service_new.viewStatus(conversationid, supbuy_type);
+
+        model.addAttribute("view", view);
+        model.addAttribute("viewStatus", viewStatus);
+
+        //logger.info("##################################################" + view.get(0).getTxtSupComRegNo());
     }
 
 }

@@ -300,17 +300,17 @@
 	</select>
 
 	<!-- 보관함 상세조회-->
-	<select id="view" resultMap="view" parameterType="">
+	<select id="view" resultMap="view" parameterType="hashmap">
 		select * from xxsb_dti_main
-		where conversation_id=#{conversationId}
-		and supbuy_type=#{}
+		where conversation_id=#{conversationid}
+		and supbuy_type=#{supbuy_type}
 	</select>
 
-    <select id="status" resultMap="status">
-        select * from xxsb_dti_status
-        where conversation_id=#{conversationId}
-		and supbuy_type=#{}
-    </select>
+	<select id="status" resultMap="status" parameterType="hashmap">
+		select * from xxsb_dti_status
+		where conversation_id=#{conversationid}
+		and supbuy_type=#{supbuy_type}
+	</select>
 
 	<!-- 세금계산서 상태변경 -->
 	<update id="statusChange"  parameterType="com.board.domain.SmartbillNewVO">

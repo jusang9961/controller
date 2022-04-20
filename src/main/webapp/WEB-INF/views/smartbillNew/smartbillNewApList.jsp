@@ -60,7 +60,7 @@
 						<input type="checkbox" name="CheckBox">
 					</td>
 					<td style='vertical-align: middle;'>
-						<a href="/smartbillNew/smartbillNewview?conversationId=${list.conversationId}&supbuytype=${txtSupbuy_type}">${list.conversationId}</a>
+						<a href="/smartbillNew/smartbillNewview?conversationId=${list.conversationId}&supbuytype=${list.txtSupbuy_type}">${list.conversationId}</a>
 					</td>
 					<td style='vertical-align: middle;'>${list.issueId}</td>
 					<td style='vertical-align: middle;'>${list.txtSupComRegNo}</td>
