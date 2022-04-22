@@ -1,9 +1,14 @@
 package com.board.controller;
 
+import com.board.service.OpenApiAescryptoService;
 import org.slf4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.inject.Inject;
 
 @Controller
 @RequestMapping("/smartbillOpenApi/*")
@@ -11,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SmartbillOpenApiController {
 
     public static final Logger logger = LoggerFactory.getLogger(SmartbillOpenApiController.class);
+
+    @Inject
+    OpenApiAescryptoService Aescrypt;
 
     @RequestMapping(value = "/smartbillOpenApiArissue", method = RequestMethod.GET)
     public String SmartbillOpenApiArissue() {
@@ -40,6 +48,21 @@ public class SmartbillOpenApiController {
     public String SmartbillOpenApiAescrypto() {
 
         return "smartbillOpenApi/smartbillOpenApiAescrypto";
+    }
+
+    /*
+     * 인증서 패스워드 암호화
+     */
+
+    @RequestMapping(value = "/smartbillOpenApiAescryptoAction", method = RequestMethod.GET)
+    @ResponseBody
+    public String SmartbillOpenApiAescryptoAction(@RequestParam("txtPassword") String txtPassword) throws Exception{
+
+        String Encrypt = Aescrypt.Aescrypto(txtPassword);
+
+        //logger.info(Encrypt);
+
+        return Encrypt;
     }
 
 }

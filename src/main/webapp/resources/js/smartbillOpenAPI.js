@@ -697,14 +697,15 @@ function TEST(){
 
 	$.ajax({ 
 		type: "GET",
-		dataType: "json", 
+		//dataType: "json",
 		crossDomain: true,
-		url: "aescryptoAction2.jsp",
+		url: "smartbillOpenApiAescryptoAction",
 		data: {"txtPassword":txtPassword},
 		success: function (data) {  
 
-			$('#Encrypt').value=data.result;
-			alert (data.result);
+			//$('#Encrypt').value=data;
+            $('input[name=Encrypt]').attr('value', data);
+            alert ("패스워드 암/복호화 작업을 완료하였습니다.");
 
 		}, 
 		error: function (error) { //error 처리 
@@ -714,8 +715,6 @@ function TEST(){
 	});
 
 }
-
-
 
 //원본 XML 조회
 function DtiStatus(){
