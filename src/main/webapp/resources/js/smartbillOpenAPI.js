@@ -531,6 +531,7 @@ function ARISSUE(){
 			}
 			else{
 				alert("정상적으로 처리되었습니다.");
+				console.log(data);
 			}
 		}, 
 		error: function (error) { //error 처리 
@@ -560,10 +561,6 @@ function ViewXml(){
 		'AuthToken': 'ekhacS9Jb2NXNlk4dWhMbWx0QW00NVFJd3dnbUZDYktBT1czaTZ3bk9kRT0K',	//토큰
 		'ServiceCode': 'DTI',
 		'ConversationID' : arrConvId
-		//'SearchFromDate': '2020-10-01',
-		//'SearchToDate': '2020-10-31',
-		//'SearchComRegno': '1111111119',
-		//'RepoTypeCode': 'AR'
 	});
 
 	$.support.cors = true;
@@ -576,16 +573,14 @@ function ViewXml(){
 		//url: "http://"+$(':radio[name="SERVER_TYPE"]').filter(':checked').val()+"api.smartbill.co.kr/sb-api/request/", 
 		url: "http://demoapi.smartbill.co.kr/sb-api/request/", 
 		data: request,
-		success: function (data) {  
-			console.log(request);
-
-			console.log
+		success: function (data) {
+			//console.log
 
 			if ("30000" != data.ResultCode) {
 				alert(data.ResultCode + ":" + data.ResultMessage);
 			}
 			else{
-				alert("정상적으로 처리되었습니다.");
+				//alert("정상적으로 처리되었습니다.");
 				totalCount = data.ResultDataSet.Table1.length;
 
 				if(0 < totalCount){
@@ -594,10 +589,9 @@ function ViewXml(){
 
 					for(var i=0; i<totalCount; i++){
 						data.ResultDataSet.Table1[i].CONVERSATION_ID;
-						data.ResultDataSet.Table1[i].DTI_XML;
-						data.ResultDataSet.Table1[i].DTT_XML;
+                        $('input[name=Encrypt]').attr('value', data);
 
-						console.log(data.ResultDataSet.Table1[i].DTI_XML);
+                        console.log(data.ResultDataSet.Table1[i].DTI_XML);
 
 					}
 				}
@@ -609,49 +603,6 @@ function ViewXml(){
 
 		} 
 	});
-	
-	$.ajax({ 
-		type: "POST",
-		dataType: "json", 
-		crossDomain: true,
-		contentType: "application/json",
-		//url: "http://"+$(':radio[name="SERVER_TYPE"]').filter(':checked').val()+"api.smartbill.co.kr/sb-api/request/", 
-		url: "http://demoapi.smartbill.co.kr/sb-api/request/", 
-		data: request,
-		success: function (data) {  
-			console.log(request);
-
-			console.log
-
-			if ("30000" != data.ResultCode) {
-				alert(data.ResultCode + ":" + data.ResultMessage);
-			}
-			else{
-				alert("정상적으로 처리되었습니다.");
-				totalCount = data.ResultDataSet.Table1.length;
-
-				if(0 < totalCount){
-
-					//var repoTypeCode = eval('(' + request + ')').RepoTypeCode;
-
-					for(var i=0; i<totalCount; i++){
-						data.ResultDataSet.Table1[i].CONVERSATION_ID;
-						data.ResultDataSet.Table1[i].DTI_XML;
-						data.ResultDataSet.Table1[i].DTT_XML;
-
-						console.log(data.ResultDataSet.Table1[i].DTI_XML);
-
-					}
-				}
-			}
-		}, 
-		error: function (error) { //error 처리 
-			alert(request);
-			console.log(request);
-
-		} 
-	});
-
 }
 
 
@@ -701,11 +652,12 @@ function TEST(){
 		crossDomain: true,
 		url: "smartbillOpenApiAescryptoAction",
 		data: {"txtPassword":txtPassword},
-		success: function (data) {  
+		success: function (data) {
 
 			//$('#Encrypt').value=data;
             $('input[name=Encrypt]').attr('value', data);
             alert ("패스워드 암/복호화 작업을 완료하였습니다.");
+            location.href("/main");
 
 		}, 
 		error: function (error) { //error 처리 
@@ -936,9 +888,6 @@ function ArApRepo() {
 					alert("데이터 없음!!!");
 				}
 			}
-
-
-
 		},
 		error: function (error) {
 			console.log(data);

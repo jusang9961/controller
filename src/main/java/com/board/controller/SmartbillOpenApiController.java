@@ -53,7 +53,6 @@ public class SmartbillOpenApiController {
     /*
      * 인증서 패스워드 암호화
      */
-
     @RequestMapping(value = "/smartbillOpenApiAescryptoAction", method = RequestMethod.GET)
     @ResponseBody
     public String SmartbillOpenApiAescryptoAction(@RequestParam("txtPassword") String txtPassword) throws Exception{
@@ -63,6 +62,18 @@ public class SmartbillOpenApiController {
         //logger.info(Encrypt);
 
         return Encrypt;
+        //return "smartbillOpenApi/smartbillOpenApiAescrypto";
     }
+
+    /*
+     * xml 원본 조회(View_Xml)
+     */
+    @RequestMapping(value = "/smartbillOpenApiViewXml", method = RequestMethod.GET)
+    public String SmartbillOpenApiViewXml() throws Exception{
+
+        return "smartbillOpenApi/smartbillOpenApiViewXml";
+    }
+
+
 
 }
