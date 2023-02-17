@@ -227,7 +227,9 @@
 		TOTAL_AMOUNT,
 		CREATION_DATE,
 		LAST_UPDATE_DATE,
-		INTERFACE_BATCH_ID)
+		INTERFACE_BATCH_ID,
+		SUP_BIZPLACE_CODE,
+		BYR_BIZPLACE_CODE)
 		VALUES(#{conversationId},
 		'AP',
 		'1',
@@ -260,7 +262,9 @@
 		#{txtTotalAmount},
 		sysdate,
 		sysdate,
-		#{txtBatchId}
+		#{txtBatchId},
+		#{txtSupBizCode},
+		#{txtByrBizCode}
 		)
 	</insert>
 

@@ -138,7 +138,7 @@
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">역매출 거래명세서 발행 - 미개발</a></li>
 						</ul>
 					<li><a href="javascript:chgStatus()">상태변경(CHGSTATUS) - 개발중</a></li>
-					<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPISearch.jsp">세금계산서 상태 조회(DTI_STATUS_LIST)</a></li>
+					<li><a href="/smartbillOpenApi/smartbillOAPISearch.jsp">세금계산서 상태 조회(DTI_STATUS_LIST)</a></li>
 					<li><a href="javascript:ArApRepo()">보관함조회(ARAP_REPO) - 기능만 구현</a></li>
 					<li><a href="/smartbillOpenApi/smartbillOpenApiViewXml">원본 Xml 조회(VIEW_XML)</a></li>
 					<li><a href="/smartbillOpenApi/smartbillOpenApiAescrypto">인증서 패스워드 암/복호화</a></li>
@@ -152,7 +152,8 @@
 					<li><a href="/BBS/jsp/smartbillOpenScrap/smartbillOscrapList.jsp">보관함 조회(OS_DTI_LIST)</a></li>
 					<li><a href="/BBS/jsp/smartbillOpenScrap/smartbillOscrapXml.jsp">원본 조회(OS_DTI_XML)</a></li>
 					<li><a href="javascript:preViewForm()">미리보기 양식(PREVIEW_FORM)</a></li>
-				</ul></li>
+				</ul>
+			</li>
 
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -167,9 +168,24 @@
 					<li>
 						<a tabindex="-1" href="https://naver.com">네이버<span class="caret"></span></a>
 					</li>
+					<li>
+						<a tabindex="-1" href="http://localhost:10009/CALLSB_V3/XXSB_DTI_ARISSUE.ASP?BATCH_ID=1669356338074&ID=29TEST&PASS=TEST" target="_blank">IE 테스트<span class="caret"></span></a>
+					</li>
+
 
 				</ul>
 			</li>
+
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">한화 OpenAPI<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/smartbillOpenApi/smartbillOpenApiHanwhaArApRepo">한화_보관함조회(ARAP_REPO)</a></li>
+					<li><a href="javascript:chgStatus_hanwha();">한화_상태변경</a></li>
+				</ul>
+			</li>
+
+
 		</ul>
 
 

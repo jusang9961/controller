@@ -36,6 +36,24 @@ public class SmartbillOldVO {
 	private String returnCode;
 	private String issueId;
 	private String dtiStatus;
+	private String txtSupBizCode;
+	private String txtByrBizCode;
+
+	public String getTxtSupBizCode() {
+		return txtSupBizCode;
+	}
+
+	public void setTxtSupBizCode(String txtSupBizCode) {
+		this.txtSupBizCode = txtSupBizCode;
+	}
+
+	public String getTxtByrBizCode() {
+		return txtByrBizCode;
+	}
+
+	public void setTxtByrBizCode(String txtByrBizCode) {
+		this.txtByrBizCode = txtByrBizCode;
+	}
 
 	public String getTxtDate() {
 		return txtDate;

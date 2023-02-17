@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.smartbillapihanwha">
+
+	<resultMap id="hanwhaRepoSelectList" type="com.board.domain.SmartbillApiHanwhaVO">
+		<result property="hanwhaEtcPcsNo" column="CONVERSATION_ID" />
+		<result property="hanwhaSupComRegno" column="SUP_COM_REGNO" />
+	</resultMap>
+
+	<insert id="smartbillApiHanwhaRepo" parameterType="com.board.domain.SmartbillApiHanwhaVO">
+		INSERT INTO XXSB_DTI_MAIN_HANWHA
+		(CONVERSATION_ID,
+		APPROVE_ID,
+		SUP_COM_REGNO,
+		DIRECTION,
+		DTI_STATUS
+)
+		VALUES(#{hanwhaEtcPcsNo},
+		#{hanwhaIssueId},
+		#{hanwhaSupComRegno},
+		#{hanwhaDirection},
+		#{hanwhaDtiStatus}
+	)
+	</insert>
+
+	<select id="hanwhaRepoSelect1" resultType="int">
+		SELECT COUNT(*) FROM XXSB_DTI_MAIN_HANWHA
+		WHERE CONVERSATION_ID = #{hanwhaEtcPcsNo}
+	</select>
+
+	<select id="hanwhaRepoSelectList" resultMap="hanwhaRepoSelectList">
+		<![CDATA[
+		SELECT CONVERSATION_ID ,SUP_COM_REGNO FROM XXSB_DTI_MAIN_HANWHA
+		WHERE DTI_STATUS='I'
+		  AND ROWNUM <= 200
+		]]>
+	</select>
+
+	<update id="HanwhaRepoResultUpdate" parameterType="com.board.domain.SmartbillNewVO">
+		UPDATE XXSB_DTI_MAIN_HANWHA
+		SET RESULT_CODE = #{smartbillResultCode}, DTI_STATUS= 'C'
+		WHERE CONVERSATION_ID = #{hanwhaEtcPcsNo}
+	</update>
+
+</mapper>
