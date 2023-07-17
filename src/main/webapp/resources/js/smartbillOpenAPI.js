@@ -1034,3 +1034,23 @@ function ArApRepo() {
     });
 
 }
+
+// // 첨부파일 업로드
+// function DeliverySend(){
+//
+//     var fileInput = document.getElementById('DeliveryFile');
+//
+//     fileInput.addEventListener('change', (event) => {
+//         var selectedFile = event.target.files[0];
+//     });
+//
+//     var fileReader = new FileReader();
+//
+//     fileReader.onload = function(event) {
+//         var arrayBuffer = event.target.result;
+//     }
+//
+//     //fileReader.readAsArrayBuffer(selectedFile);
+//
+//     alert(arrayBuffer);
+// }

@@ -115,7 +115,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="/BBS/jsp/smartbillContract/smartbillContract.jsp">검토요청</a></li>
 							<li><a href="/BBS/jsp/smartbillContract/smartbillOldList.jsp">계약요청</a></li>
-						</ul></li>
+						</ul>
+					</li>
 					<li><a href="/BBS/jsp/smartbillContract/smartbillOldList.jsp">전자계약 조회</a></li>
 					<li><a href="/BBS/jsp/smartbillContract/certificate.jsp">인증서 등록</a></li>
 				</ul></li>
@@ -125,9 +126,7 @@
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">OpenAPI<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-submenu"><a tabindex="-1" href="#">전자(세금)계산서
-						발행<span class="caret"></span>
-					</a>
+					<li class="dropdown-submenu"><a tabindex="-1" href="#">전자(세금)계산서 발행<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/smartbillOpenApi/smartbillOpenApiSave">정매출 저장(DTI_SAVE)</a></li>
 							<li><a href="/smartbillOpenApi/smartbillOpenApiArissue">정매출 발행(ARISSUE)</a></li>
@@ -137,12 +136,21 @@
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">역매입 거래명세서 요청 - 미개발</a></li>
 							<li><a href="/BBS/jsp/smartbillOpenApi/smartbillOAPIDtt.jsp">역매출 거래명세서 발행 - 미개발</a></li>
 						</ul>
+					</li>
 					<li><a href="javascript:chgStatus()">상태변경(CHGSTATUS) - 개발중</a></li>
 					<li><a href="/smartbillOpenApi/smartbillOAPISearch.jsp">세금계산서 상태 조회(DTI_STATUS_LIST)</a></li>
 					<li><a href="javascript:ArApRepo()">보관함조회(ARAP_REPO) - 기능만 구현</a></li>
 					<li><a href="/smartbillOpenApi/smartbillOpenApiViewXml">원본 Xml 조회(VIEW_XML)</a></li>
 					<li><a href="/smartbillOpenApi/smartbillOpenApiAescrypto">인증서 패스워드 암/복호화</a></li>
-				</ul></li>
+					<li class="dropdown-submenu"><a tabindex="-1" href="#">첨부파일 전송/삭제/조회<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/smartbillOpenApi/smartbillOpenApiDeliverySend">첨부파일 전송</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiDeliveryDelete">첨부파일 삭제</a></li>
+							<li><a href="/smartbillOpenApi/smartbillOpenApiDeliverySearch">첨부파일 조회</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
 
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"

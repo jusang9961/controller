@@ -200,6 +200,29 @@
 			<version>1.1.1</version>
 		</dependency>
 
+		<!-- commons-fileupload 의존성 추가 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+			<!--<scope>system</scope>
+			<systemPath>${basedir}/lib/commons-fileupload-1.3.1.jar</systemPath> JAR 파일 경로를 적절히 설정 -->
+		</dependency>
+
+        <!-- base64 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.15</version> <!-- 사용 가능한 버전으로 설정 -->
+        </dependency>
+
+        <!-- Date format -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.10</version> <!-- 사용 가능한 버전으로 설정 -->
+        </dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

@@ -1,20 +1,29 @@
 package com.board.controller;
 
-import com.board.domain.SmartbillApiHanwha2VO;
 import com.board.domain.SmartbillApiHanwhaVO;
+import com.board.domain.SmartbillApiVO;
 import com.board.service.OpenApiAescryptoService;
 import com.board.service.SmartbillApiHanwhaService;
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +69,12 @@ public class SmartbillOpenApiController {
     public String SmartbillOpenApiAescrypto() {
 
         return "smartbillOpenApi/smartbillOpenApiAescrypto";
+    }
+
+    @RequestMapping(value = "/smartbillOpenApiDeliverySend", method = RequestMethod.GET)
+    public String SmartbillOpenApiDeliverySend() {
+
+        return "smartbillOpenApi/smartbillOpenApiDeliverySend";
     }
 
     /*
@@ -233,4 +248,116 @@ public class SmartbillOpenApiController {
 
         return "success";
     }
+
+    //첨부파일 전송
+    @RequestMapping(value = "/smartbillOpenApiDeliverySendAction", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseBody
+    public SmartbillApiVO smartbillOpenApiDeliverySendAction(@RequestPart("DeliveryFile") MultipartFile DeliveryFile,
+                                                             @RequestParam("conversationId") String conversationId){
+
+        SmartbillApiVO smartbillApiVO = new SmartbillApiVO();
+        String resultMessage = "";
+
+        if(!DeliveryFile.isEmpty()) {
+
+            String host_url = "https://demoattachapi.smartbill.co.kr/sb-api/AttachFile/";
+
+            // 형식 지정
+            // 형식에 맞게 변환
+            Date currentTime = new Date();
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+            String formattedTime = formatter.format(currentTime);
+
+            try {
+
+                String fileName = DeliveryFile.getOriginalFilename();
+
+                byte[] fileBytes = Base64.encodeBase64(DeliveryFile.getBytes());
+                String fileencodeString = new String(fileBytes);
+
+                String conversationIdArray[] = {conversationId};
+                String fileencodeStringArray[] = {fileencodeString};
+
+                // Json 객체 생성
+                JSONObject jsonObject = new JSONObject();
+
+                jsonObject.put("MessageId", conversationId); // 메시지 ID
+                jsonObject.put("RequestTime", formattedTime); // 전송 시간(yyyyMMddHHmmss)
+                jsonObject.put("Signal", "ATTACHFILEUPLOAD"); // 요청 시그널
+                jsonObject.put("AuthToken", "d2ZDWFREa2RWRHpuSkpZV2toYXdyUVpSSmM3S3doNjJoZVM0K2RqTlF4VT0K"); // 토큰
+                jsonObject.put("SendComRegno", "0000000029"); // 전송 사업자번호
+                jsonObject.put("ServiceCode", "DTI");
+                jsonObject.put("SystemType", "OAPI");
+                jsonObject.put("ConversationId", conversationIdArray);
+                jsonObject.put("FileName", fileName); // 파일 명
+                jsonObject.put("MsgDoc", fileencodeStringArray); // 파일바이너리 Base64
+
+                logger.info("jsonObject : " + jsonObject);
+
+                try {
+
+                    URL url = new URL(host_url);
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Content-Type","application/json;charset=utf-8");
+                    connection.setRequestProperty("Accept", "application/json");
+                    connection.setConnectTimeout(10000);
+
+                    // Json 전송
+                    connection.setDoOutput(true);
+                    DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+                    //BufferedWriter out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
+
+                    out.write(jsonObject.toString().getBytes());
+                    out.flush();
+                    out.close();
+
+                    // Json 전송 결과 수신
+                    if(null != connection) {
+
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                        String line = "";
+                        String response = "";
+
+                        while ((line = in.readLine()) != null) {
+                            response += line + "\n";
+                        }
+
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+
+                            //JSONArray jsonArrayResonse = jsonObject.getJSONArray("ConversationId");
+                            if ("30000".equalsIgnoreCase(jsonResponse.getString("ResultCode"))) {
+                                logger.info("ResultCode : " + jsonResponse.getString(("ResultCode")));
+                                logger.info("ResultMessage : " + jsonResponse.getString(("ResultMessage")));
+                                smartbillApiVO.setResultCode(jsonResponse.getString(("ResultCode")));
+                                smartbillApiVO.setResultMessage(jsonResponse.getString(("ResultMessage")));
+
+                            } else {
+                                logger.info("ResultCode : " + jsonResponse.getString(("ResultCode")));
+                                logger.info("ResultMessage : " + jsonResponse.getString(("ResultMessage")));
+                                smartbillApiVO.setResultCode(jsonResponse.getString(("ResultCode")));
+                                smartbillApiVO.setResultMessage(jsonResponse.getString(("ResultMessage")));
+
+                            }
+
+                        } catch (Exception ee) {
+                            ee.printStackTrace();
+                        }
+
+                    }
+                    } catch (IOException conn){
+                        conn.printStackTrace();
+                    }
+
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        return smartbillApiVO;
+    }
+
 }
